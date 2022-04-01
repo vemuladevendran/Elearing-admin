@@ -6,7 +6,7 @@ import { TokenService } from 'src/app/services/token/token.service';
 @Component({
   selector: 'app-topnav',
   templateUrl: './topnav.component.html',
-  styleUrls: ['./topnav.component.css']
+  styleUrls: ['./topnav.component.scss']
 })
 export class TopnavComponent implements OnInit {
   isLoggedIn = true;
