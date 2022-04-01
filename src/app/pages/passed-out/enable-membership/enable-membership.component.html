@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <h2>Enable Membership</h2>
+        <div class="col-8 col-md-4 col-lg-3">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Enter Roll-Number</mat-label>
+                <input matInput placeholder="Roll Number" type="text" [formControl]="rollNumber" />
+            </mat-form-field>
+        </div>
+        <div class="col-4 col-md-2">
+            <button type="button" class="btn btn-primary w-100 mt-2" (click)="getStudentDetails()">Find</button>
+        </div>
+    </div>
+    <!-- it will visibile only after roll number enter and student find -->
+    <div *ngIf="studentData">
+        <!-- student details -->
+        <div class="col-12">
+            <div class="row justify-content-around">
+                <mat-card class="col-12 col-md-6 py-5">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6 text-center order-md-2">
+                            <img [src]="studentData.image === null ? '/assets/default-profile.png' : studentData?.image.url"
+                                alt="Default Profile" decoding="async" loading="lazy" class="w-100 profile-image">
+                        </div>
+                        <div class="col-12 col-md-6 order-md-1">
+                            <p class="mt-3">Name : <span class="text-primary">{{studentData.name}}</span></p>
+                            <p>Roll Number : <span class="text-primary">{{studentData.rollNumber}}</span></p>
+                            <p>Email : <span class="text-primary">{{studentData.email}}</span></p>
+                        </div>
+                    </div>
+                </mat-card>
+                <mat-card class="col-12 col-md-4 py-5">
+                    <p>DOB : <span class="text-primary">{{studentData.dob | date}}</span></p>
+                    <p>Year : <span class="text-primary">{{studentData.year}}</span></p>
+                    <p>Mobile Number : <span class="text-primary">{{studentData.mobileNumber}}</span></p>
+                    <p>Membership : <span class="text-primary">{{studentData.membership}}</span></p>
+                    <p>membershipExpireDate : <span class="text-primary">{{studentData.membershipExpireDate
+                            |date}}</span></p>
+                    <div class="mt-3 text-center">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>No of years</mat-label>
+                            <input matInput [formControl]="year" type="number" min="1" />
+                        </mat-form-field>
+                        <button type="button" class="btn btn-info text-light mt-2"
+                            (click)="enableMembership(studentData._id)">Enable Membership</button>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

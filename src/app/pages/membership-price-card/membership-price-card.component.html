@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex flex-wrap justify-content-between">
+            <h2 class="m-0">Membership Card Price Details</h2>
+            <button class="btn btn-primary" routerLink="membership-card"><span class="h6 pe-1">&#43;</span> Membership
+                Card</button>
+        </div>
+        <div class="col-12 col-lg-4 col-xl-3" *ngFor="let i of [0,0,0]">
+            <div>
+                <div class="d-flex align-items-center justify-content-between mt-5 border border-success py-4 px-2">
+                    <div class="me-2">
+                        <img src="/assets/premium.svg" alt="pack">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <span class="fw-bold">Plan Name</span>
+                        <span class="fw-bold">Year : 1</span>
+                        <span class="fw-bold">Price: 1000</span>
+                    </div>
+                </div>
+                <div class="bg-success border border-success border-top-0 fw-bold py-3 d-flex justify-content-around">
+                    <a class="cursor-pointer text-white">Update</a>
+                    <a class="cursor-pointer text-white">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

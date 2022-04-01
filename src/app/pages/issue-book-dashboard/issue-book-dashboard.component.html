@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
+            <h2 class="m-0">Issue Book Dashboard</h2>
+            <div>
+                <button class="btn btn-danger btn-sm rounded shadow m-0 text-white" routerLink="issue-book">
+                    Issue Book
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- steper content -->
+    <div>
+        <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+            <mat-step label="Issued Books">
+                <app-issued-books></app-issued-books>
+            </mat-step>
+            <mat-step label="Returned Books">
+                <app-returned-books></app-returned-books>
+            </mat-step>
+            <mat-step label="Due Books">
+                <app-due-books></app-due-books>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</div>

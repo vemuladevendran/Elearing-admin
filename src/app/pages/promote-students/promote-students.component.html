@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <h2>Promote Students</h2>
+        <div class="col-12">
+            <p><span class="fw-bold">Disclaimer :</span>Before updating the students please read this.</p>
+            <ol>
+                <li>Once student is promoted again they can't Depromote</li>
+                <li>You can promote students to only one level at a time</li>
+            </ol>
+            <!-- student year dropdown -->
+            <div>
+                <h2>Select the year to promote</h2>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Year</mat-label>
+                        <mat-select [formControl]="selectedYear">
+                            <mat-option class="text-uppercase" value="firstYear">
+                                First Year
+                            </mat-option>
+                            <mat-option class="text-uppercase" value="secondYear">
+                                Second Year
+                            </mat-option>
+                            <mat-option class="text-uppercase" value="thirdYear">
+                                Third Year
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button class="btn btn-primary" (click)="promoteStudents()">Promote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

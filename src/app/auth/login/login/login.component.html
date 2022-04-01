@@ -1,0 +1,43 @@
+<div class="container h-100">
+  <div class="row h-100 align-items-center justify-content-center">
+    <!-- image  container -->
+    <div class="col-12 col-md-6 col-lg-8">
+      <img src="/assets/login-img.webp" alt="Login image" class="w-100 h-100">
+    </div>
+    <!-- login form -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <h1 class="text-center fw-bold login-title">Login your account</h1>
+      <div class="login-form-wrapper" style="margin-top: 4rem;">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email</mat-label>
+              <input type="email" email matInput formControlName="email" (input)="clearErrorMessage()" />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enter your password</mat-label>
+              <input matInput [type]="passwordHide ? 'password' : 'text'" formControlName="password"
+                (input)="clearErrorMessage()">
+              <button type="button" mat-icon-button matSuffix (click)="passwordHide = !passwordHide"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide" class="border-0">
+                <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <!-- invalid details -->
+          <p class="text-danger" *ngIf="invalidDetails !== ''">
+            {{invalidDetails}}
+          </p>
+          <!-- login btn -->
+          <div class="text-center">
+            <button class="login-btn border-0 px-5 py-2 rounded text-white fw-bold" [disabled]="loginForm.invalid">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

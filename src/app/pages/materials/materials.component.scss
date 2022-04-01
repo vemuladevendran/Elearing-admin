@@ -1,0 +1,35 @@
+.thumbnail-img {
+    width: 100%;
+    height: 130px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    overflow: hidden;
+}
+
+.description-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.pdf-details-wrapper {
+    border-top: 1px solid black;
+    background-color: white;
+}
+
+.pop-up-wrapper {
+    z-index: 2;
+    background: #8080809e;
+    top: 0;
+    left: 0;
+    height: 150px;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdf-card:hover {
+    > .pop-up-wrapper {
+        display: flex;
+    }
+}

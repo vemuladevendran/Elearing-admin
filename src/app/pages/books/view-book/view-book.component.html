@@ -1,0 +1,31 @@
+<div class="container-fluid p-3">
+    <div class="row">
+        <div class="col-12 col-md-6 border-end">
+            <img [src]="details?.image?.url ? details?.image?.url : '/assets/book-2.webp'" alt="book preview"
+                decoding="async" loading="lazy" class="book-preview-img">
+        </div>
+        <div class="col-12 col-md-6">
+            <p>Title : <span class="text-primary">{{details.title}}</span></p>
+            <p>Author : <span class="text-primary">{{details.author?.authorName}}</span></p>
+            <p>Code : <span class="text-primary">{{details.code}}</span></p>
+            <p>Category : <span class="text-primary">{{details.category}}</span></p>
+            <p>Edition : <span class="text-primary">{{details.edition}}</span></p>
+            <p>PublishedYear : <span class="text-primary">{{details.publishedYear | date}}</span></p>
+        </div>
+        <div class="col-12 mt-2">
+            <p>PreferredYear : <span class="text-primary">{{details.preferredYear}}</span></p>
+            <p>Publisher : <span class="text-primary">{{details.publisher}}</span></p>
+            <p>Avalible : <span class="text-primary">{{details.totalCount}}</span></p>
+            <p>Price : <span class="text-primary">{{details.price}}</span></p>
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow" mat-button mat-dialog-close
+                    [routerLink]="['books/edit-book/',details._id]">
+                    Update Book Details
+                </button>
+                <button type="button" class="btn btn-sm rounded shadow ms-3 border-dark" (click)="share()">
+                    <mat-icon class="align-middle">share</mat-icon> Share
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div mat-dialog-content class="mat-typography container-fluid">
+    <div class="row">
+        <div class="col-12 border-bottom">
+            <p class="text-center fw-bold text-uppercase">{{details.title}}</p>
+            <p><span class="fw-bold">Description : </span> {{details?.description}}</p>
+            <p><span class="fw-bold">Preferred year :</span> {{details?.preferredYear}}</p>
+        </div>
+        <div class="col-12">
+            <pdf-viewer [src]="details.file.url" [render-text]="true" [original-size]="false" class="preview-pdf">
+            </pdf-viewer>
+        </div>
+    </div>
+</div>

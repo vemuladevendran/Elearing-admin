@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr.css";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #dc3546 !important;
+  border-color: #dc3546 !important;
+}
+
+.bg-secondary {
+  background-color: #dc3546 !important;
+}
+
+.text-secondary {
+  color: #dc3546 !important;
+}
+
+.bg-muted {
+  background-color: #6c757da8;
+}
+
+.zero-padding-panel mat-dialog-container {
+  padding: 0 !important;
+}
