@@ -32,7 +32,7 @@ const routes: Routes = [
             (m) => m.DashboardModule
           ),
       },
-      { path: 'course', loadChildren: () => import('./pages/dashboard/course/course.module').then(m => m.CourseModule) },
+      { path: 'course', loadChildren: () => import('./pages/course/course.module').then(m => m.CourseModule) },
 
     ],
   },
