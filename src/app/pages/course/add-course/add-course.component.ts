@@ -62,12 +62,14 @@ export class AddCourseComponent implements OnInit {
 
         // checking update form or add form
         if (this.courseId !== '') {
-          // await this.bookServe.updateBook(this.courseId, this.formData);
+          await this.courseServe.updateCourse(this.courseId, this.formData);
           this.toast.success('Updated');
+          this.router.navigate(['/course']);
           return;
         }
         await this.courseServe.createCourse(this.formData);
         this.toast.success('Created');
+        this.router.navigate(['/course']);
         return;
       };
       this.loader.show();
@@ -77,12 +79,14 @@ export class AddCourseComponent implements OnInit {
         if (this.selectedImagePreviewURL === '') {
           this.addCourseForm.value.image = null;
         }
-        // await this.bookServe.updateBook(this.courseId, this.addCourseForm.value);
+        await this.courseServe.updateCourse(this.courseId, this.addCourseForm.value);
         this.toast.success('Updated');
+        this.router.navigate(['/course']);
         return;
       }
       await this.courseServe.createCourse(this.addCourseForm.value);
       this.toast.success('Created');
+      this.router.navigate(['/course']);
       return;
     } catch (error: any) {
       this.toast.error(error?.error?.message);

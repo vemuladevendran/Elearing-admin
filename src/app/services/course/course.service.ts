@@ -19,9 +19,17 @@ export class CourseService {
   }
 
   // update course details
-  updateCourse(data: any, id: string): Promise<any> {
+  updateCourse(id: string, data: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/course/${id}`;
     return lastValueFrom(this.http.put(url, data));
+  }
+
+  // get course details
+  getCourses(filters?: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/course`;
+    return lastValueFrom(this.http.get(url, {
+      params: filters,
+    }));
   }
 
   // get course details by id
@@ -29,5 +37,4 @@ export class CourseService {
     const url = `${this.settings.API_BASE_URL}/course/${id}`;
     return lastValueFrom(this.http.get(url));
   }
-
 }

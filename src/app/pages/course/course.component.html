@@ -1,1 +1,51 @@
-<p>course works!</p>
+<div class="container">
+    <div class="row">
+        <!-- header details -->
+        <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
+            <h2 class="m-0">Course List</h2>
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="add-course">
+                    <span class="h6 pe-1">&#43;</span> Add Course
+                </button>
+            </div>
+        </div>
+        <!-- filters -->
+        <div class="col-12">
+            <form class="row justify-content-end" [formGroup]="filtersForm">
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Code</mat-label>
+                        <input matInput placeholder="Title" type="text" formControlName="code" />
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Course Title</mat-label>
+                        <input type="text" matInput placeholder="Code" formControlName="courseTitle" />
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <!-- empty list -->
+        <div class="col-12 text-center" *ngIf="courseList.length === 0">
+            <img src="/assets/no-data-found.png" class="w-100" alt="NO DATA FOUND">
+        </div>
+
+        <!-- course List -->
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 my-2" *ngFor="let course of courseList">
+            <mat-card class="d-flex align-items-center">
+                <div class="border border-dark">
+                    <img [src]="course?.image?.url ? course?.image?.url : defaultThumbnailImg" alt="Course Thumbnail"
+                        class="course-thumbnail-img" decoding="async" loading="lazy">
+                </div>
+                <div class="mx-2 d-flex flex-column w-100">
+                    <p class="text-uppercase fw-bold"> {{course.courseTitle}} </p>
+                    <p class="text-end">
+                        <mat-icon title="edit details" class="text-primary cursor-pointer"
+                            [routerLink]="['edit-course/',course._id]">edit</mat-icon>
+                    </p>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

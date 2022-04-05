@@ -16,14 +16,14 @@
             <div>
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Description</mat-label>
-                    <input matInput formControlName="description">
+                    <textarea matInput placeholder="Description" formControlName="description"></textarea>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Course Duration</mat-label>
                     <mat-select formControlName="courseDuration">
-                        <mat-option [value]="i+1" *ngFor="let month of durationMonths; index as i">
+                        <mat-option [value]="i + 1 + 'Month'" *ngFor="let month of durationMonths; index as i">
                             {{i + 1 + 'Month'}}
                         </mat-option>
                     </mat-select>
@@ -60,7 +60,7 @@
         <!-- submit buttons -->
         <div class="d-flex flex-wrap justify-content-center mt-2">
             <div>
-                <a [routerLink]="['/']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                <a [routerLink]="['/course']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
                     <span class="h6">&#10006; </span>
                     Cancel
                 </a>
