@@ -31,11 +31,11 @@ export class AppShellComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (this.router.url === '/') {
-      this.router.navigate(['books']);
-    }
-    await this.setUserDetails();
-    this.getUserDetails();
+    // if (this.router.url === '/') {
+    //   this.router.navigate(['']);
+    // }
+    // await this.setUserDetails();
+    // this.getUserDetails();
   }
 
   getUserDetails() {

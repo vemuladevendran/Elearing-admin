@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppShellModule } from './components/app-shell/app-shell.module';
 import { CommonComponentModule } from './components/common-components/common-component.module';
 import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
@@ -24,6 +25,12 @@ import { environment } from '../environments/environment';
     AppShellModule,
     HttpClientModule,
     CommonComponentModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+    }),
   ],
   providers: [
     {
