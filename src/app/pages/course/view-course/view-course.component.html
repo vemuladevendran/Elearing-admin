@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row course-container p-3">
+        <h1 class="text-white text-uppercase">{{courseDetails?.courseTitle}}</h1>
+        <!-- course details -->
+        <div class="col-12 col-md-2">
+            <img class="rounded course-thumbnail w-100"
+                [src]="courseDetails?.image?.url ? courseDetails?.image?.url : defaultThumbnailImg"
+                alt="Course Thumbnail">
+        </div>
+        <div class="col-12 col-md-10 mt-3 mt-md-0">
+            <p class="text-white fs-6">
+                {{courseDetails?.description}} </p>
+            <p class="text-white">
+                The category contains <span class="text-warning">470 Materials, 15 Videos</span>
+            </p>
+            <div class="d-flex">
+                <p class="text-white">
+                    Price : <span class="text-primary fw-bold">{{courseDetails?.price}}</span>
+                </p>
+                <p class="ms-3">
+                    <button type="button" class="border-0 bg-success p-1 px-2 rounded">
+                        <mat-icon class="text-white">share</mat-icon>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <h1 class="mt-3">Materials</h1>
+</div>

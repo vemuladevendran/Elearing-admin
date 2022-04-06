@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { CourseService } from 'src/app/services/course/course.service';
@@ -20,7 +21,8 @@ export class CourseComponent implements OnInit {
     private loader: LoaderService,
     private toast: ToastrService,
     private courseServe: CourseService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
   ) {
     this.filtersForm = this.fb.group({
       code: [''],
@@ -43,6 +45,17 @@ export class CourseComponent implements OnInit {
     } finally {
       this.loader.hide();
     }
+  }
+
+  // view course details
+  viewCourse(id: string): void {
+    this.router.navigate(['/course/view-course/', id])
+  };
+
+  // edit course details
+  editCourse(event: any, id: string): void {
+    event.stopPropagation();
+    this.router.navigate(['/course/edit-course/', id])
   }
   ngOnInit(): void {
     this.getCourseDetails(this.filters);

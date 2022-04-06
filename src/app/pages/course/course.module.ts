@@ -11,6 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ViewCourseComponent } from './view-course/view-course.component';
+import { VideoCardComponent } from './video-card/video-card.component';
+import { MaterialCardComponent } from './material-card/material-card.component';
 const materialModules = [
   MatInputModule,
   MatFormFieldModule,
@@ -23,7 +26,10 @@ const materialModules = [
 @NgModule({
   declarations: [
     CourseComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    ViewCourseComponent,
+    VideoCardComponent,
+    MaterialCardComponent
   ],
   imports: [
     CommonModule,
