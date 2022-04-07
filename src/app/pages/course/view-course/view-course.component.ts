@@ -1,6 +1,9 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { map, Observable } from 'rxjs';
 import { CourseService } from 'src/app/services/course/course.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
@@ -13,14 +16,19 @@ export class ViewCourseComponent implements OnInit {
   courseId = '';
   courseDetails: any;
   defaultThumbnailImg = '/assets/default-thumbnail-image.png';
-  
+  stepperOrientation: Observable<StepperOrientation>;
+
   constructor(
     private loader: LoaderService,
     private toast: ToastrService,
     private courseServe: CourseService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    breakpointObserver: BreakpointObserver
   ) {
     this.courseId = this.route.snapshot.paramMap.get('id') ?? '';
+    this.stepperOrientation = breakpointObserver
+      .observe('(min-width: 800px)')
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
   }
 
   ngOnInit(): void {

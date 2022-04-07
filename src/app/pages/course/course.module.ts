@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ViewCourseComponent } from './view-course/view-course.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { MaterialCardComponent } from './material-card/material-card.component';
+
 const materialModules = [
   MatInputModule,
   MatFormFieldModule,

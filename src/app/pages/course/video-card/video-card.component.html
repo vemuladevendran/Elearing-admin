@@ -1,1 +1,18 @@
-<p>video-card works!</p>
+<div class="container py-1 h-100" style="background-color: #f2fcfe;">
+    <div class="row h-100">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt-2" *ngFor="let i of [0,0,0,0,0,0,0,0,0]">
+            <div class="video-card bg-light border border-muted p-2">
+                <div class="video-thumbnail-img-wrapper">
+                    <img class="video-thumbnail-img rounded w-100" src="/assets/thumbnail.png" alt="Video Preview"
+                        decoding="async" loading="lazy">
+                </div>
+                <h2 class="mt-3 m-0 fw-bold text-center title-text">
+                    Title of the video
+                </h2>
+                <p class="text-end m-0">
+                    <mat-icon title="edit details" class="text-primary cursor-pointer">edit </mat-icon>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
