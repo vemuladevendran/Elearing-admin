@@ -48,4 +48,24 @@ export class ViewCourseComponent implements OnInit {
     }
   }
 
+  async share(): Promise<void> {
+    try {
+      navigator
+        .share({
+          url: window.location.href,
+          files: this.courseDetails?.image?.url,
+          title: 'Course Details',
+          text: `
+          Title: ${this.courseDetails.courseTitle}
+          Description: ${this.courseDetails.description}
+          Price: ${this.courseDetails.price}
+          The course contains ${this.courseDetails.count[0]} Videos, ${this.courseDetails.count[1]} Materials
+          `,
+        })
+    } catch (error) {
+      console.log(error);
+      this.toast.error("fail to share")
+    }
+  }
+
 }

@@ -11,7 +11,7 @@
             <p class="text-white fs-6">
                 {{courseDetails?.description}} </p>
             <p class="text-white">
-                The category contains <span class="text-warning">{{courseDetails?.count[0]}} Videos,
+                The course contains <span class="text-warning">{{courseDetails?.count[0]}} Videos,
                     {{courseDetails?.count[0]}} Materials</span>
             </p>
             <div class="d-flex">
@@ -19,7 +19,7 @@
                     Price : <span class="text-primary fw-bold">{{courseDetails?.price}}</span>
                 </p>
                 <p class="ms-3">
-                    <button type="button" class="border-0 bg-success p-1 px-2 rounded">
+                    <button type="button" class="border-0 bg-success p-1 px-2 rounded" (click)="share()">
                         <mat-icon class="text-white">share</mat-icon>
                     </button>
                 </p>
