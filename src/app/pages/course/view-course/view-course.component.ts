@@ -28,7 +28,8 @@ export class ViewCourseComponent implements OnInit {
     this.courseId = this.route.snapshot.paramMap.get('id') ?? '';
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+      // .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'horizontal')));
   }
 
   ngOnInit(): void {

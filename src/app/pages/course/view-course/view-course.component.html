@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row course-container p-3">
+    <div class="row align-items-center course-container p-3">
         <h1 class="text-white text-uppercase">{{courseDetails?.courseTitle}}</h1>
         <!-- course details -->
         <div class="col-12 col-md-2">
@@ -29,9 +29,19 @@
     <div>
         <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
             <mat-step label="Videos">
+                <div class="text-end">
+                    <button class="btn btn-primary btn-sm rounded shadow m-0 text-white">
+                        <span class="h6 pe-1">&#43;</span> Add Video
+                    </button>
+                </div>
                 <app-video-card></app-video-card>
             </mat-step>
             <mat-step label="Materials">
+                <div class="text-end">
+                    <button class="btn btn-primary btn-sm rounded shadow m-0 text-white">
+                        <span class="h6 pe-1">&#43;</span> Add Material
+                    </button>
+                </div>
                 <app-material-card></app-material-card>
             </mat-step>
         </mat-stepper>
