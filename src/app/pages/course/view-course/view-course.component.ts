@@ -53,7 +53,6 @@ export class ViewCourseComponent implements OnInit {
       navigator
         .share({
           url: window.location.href,
-          files: this.courseDetails?.image?.url,
           title: 'Course Details',
           text: `
           Title: ${this.courseDetails.courseTitle}
