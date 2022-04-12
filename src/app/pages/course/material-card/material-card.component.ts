@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./material-card.component.scss']
 })
 export class MaterialCardComponent implements OnInit {
-
+  materialsList = Array(30).fill('');
   constructor() { }
 
   ngOnInit(): void {

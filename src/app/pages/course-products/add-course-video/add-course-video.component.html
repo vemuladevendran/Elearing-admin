@@ -1,1 +1,56 @@
-<p>add-course-video works!</p>
+<div>
+    <!-- back btn -->
+    <div class="d-flex">
+        <span class="d-flex align-items-center cursor-pointer" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon> Back
+        </span>
+    </div>
+    <mat-stepper #stepper linear>
+        <mat-step [stepControl]="addVideoForm">
+            <ng-template matStepLabel>Details Form</ng-template>
+            <p class="fw-bold fs-5 mb-3" *ngIf="courseId !== ''"> This video will upload under <span
+                    class="text-success">
+                    {{courseName}}</span>
+                course </p>
+            <form class="row" [formGroup]="addVideoForm">
+                <div class="col-12 col-md-6 col-xl-5">
+                    <div>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Video Title</mat-label>
+                            <input matInput formControlName="title">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Video Duration</mat-label>
+                            <input matInput type="number" formControlName="videoDuration" min="1">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Priority</mat-label>
+                            <input matInput type="number" formControlName="priority" min="1">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary" matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Video Upload</ng-template>
+            second
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Preview Form</ng-template>
+            Third
+        </mat-step>
+    </mat-stepper>
+</div>
