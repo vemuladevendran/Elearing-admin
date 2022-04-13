@@ -34,6 +34,7 @@ const routes: Routes = [
       },
       { path: 'course', loadChildren: () => import('./pages/course/course.module').then(m => m.CourseModule) },
       { path: 'course-products', loadChildren: () => import('./pages/course-products/course-products.module').then(m => m.CourseProductsModule) },
+      { path: 'books', loadChildren: () => import('./pages/books/books.module').then(m => m.BooksModule) },
       { path: 'authors', loadChildren: () => import('./pages/author/author.module').then(m => m.AuthorModule) },
 
     ],
