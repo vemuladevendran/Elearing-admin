@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- book card -->
+        <mat-card class="col-12 col-lg-6 mt-2" *ngFor="let book of bookList">
+            <div class="row">
+                <div class="col-12 col-md-4 text-center">
+                    <img src="/assets/book-3.jpg" alt="Book-Image" class="book-preview-img rounded w-100">
+                </div>
+                <div class="col-12 col-md-7 d-flex flex-column justify-content-center">
+                    <p> Book | February 2022 </p>
+                    <p class="fw-bold">World Development Report 2022 : Finance for an Equitable Recovery</p>
+                    <p>Author : Test1</p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <mat-icon title="Delete" class="text-danger cursor-pointer me-3">delete </mat-icon>
+                            <mat-icon title="edit details" class="text-primary cursor-pointer">edit </mat-icon>
+                        </div>
+                        <div class="text-primary cursor-pointer" (click)="viewBookDetails('data')">View Details >></div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>

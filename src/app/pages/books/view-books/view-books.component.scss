@@ -1,0 +1,11 @@
+.book-preview-img {
+    max-height: 200px;
+    max-width: 150px;
+}
+
+@media screen and(max-width: 768px) {
+    .view-title {
+        position: fixed;
+        z-index: 11;
+    }
+}
