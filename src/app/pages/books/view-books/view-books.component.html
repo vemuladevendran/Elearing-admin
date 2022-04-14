@@ -1,4 +1,4 @@
-<div class="container-fluid position-relative">
+<div class="container-fluid position-relative" id="view-book">
     <div class="row">
         <div class="bg-light view-title d-flex">
             <p class="d-flex d-lg-none align-items-center text-danger cursor-pointer" (click)="closeViewBookScreen()">
@@ -8,12 +8,12 @@
         </div>
         <mat-card class="mt-5">
             <div class="col-12 text-center">
-                <img src="/assets/book-3.jpg" alt="Book-Image" class="book-preview-img rounded w-100">
+                <img src="/assets/book-3.png" alt="Book-Image" class="book-preview-img rounded w-100">
             </div>
             <div class="col-12 mt-2">
                 <div class="d-flex justify-content-between">
                     <p> Book | February 2022 </p>
-                    <p class="d-flex align-items-center text-danger cursor-pointer">Share <mat-icon>share</mat-icon>
+                    <p class="d-flex align-items-center text-danger cursor-pointer" (click)="shareData()">Share <mat-icon>share</mat-icon>
                     </p>
                 </div>
                 <p class="fw-bold">World Development Report 2022 : Finance for an Equitable Recovery</p>

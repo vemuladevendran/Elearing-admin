@@ -15,11 +15,12 @@
                     {{courseDetails?.count[0]}} Materials</span>
             </p>
             <div class="d-flex">
-                <p class="text-white">
-                    Price : <span class="text-primary fw-bold">{{courseDetails?.price}}</span>
-                </p>
+                <div class="text-white">
+                    <p>Code : <span class="text-primary fw-bold">{{courseDetails?.code}}</span></p>
+                    <p>Price : <span class="text-primary fw-bold">{{courseDetails?.price}}</span></p>
+                </div>
                 <p class="ms-3">
-                    <button type="button" class="border-0 bg-success p-1 px-2 rounded" (click)="share()">
+                    <button type="button" class="border-0 bg-success p-1 px-2 rounded" (click)="shareData()">
                         <mat-icon class="text-white">share</mat-icon>
                     </button>
                 </p>

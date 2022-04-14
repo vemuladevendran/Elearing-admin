@@ -67,4 +67,36 @@ export class ViewCourseComponent implements OnInit {
     }
   }
 
+  async shareData(): Promise<void> {
+    try {
+      const response = await fetch(this.courseDetails?.image?.url);
+      const blob = await response.blob();
+      const filesArray = [
+        new File(
+          [blob],
+          this.courseDetails?.image?.url,
+          {
+            type: "image/jpeg",
+            lastModified: new Date().getTime()
+          }
+        )
+      ];
+      const shareData = {
+        url: window.location.href,
+        title: 'Course Details',
+        text: `
+        Title: ${this.courseDetails.courseTitle}
+        Description: ${this.courseDetails.description}
+        Price: ${this.courseDetails.price}
+        The course contains ${this.courseDetails.count[0]} Videos, ${this.courseDetails.count[1]} Materials
+        `,
+        files: filesArray,
+      };
+      navigator.share(shareData);
+    } catch (error) {
+      console.log(error);
+      this.toast.error("fail to share")
+    }
+  }
+
 }

@@ -12,13 +12,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookCardComponent } from './book-card/book-card.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const materialModules = [
   MatInputModule,
   MatFormFieldModule,
   MatIconModule,
   MatCardModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ]
 @NgModule({
   declarations: [
