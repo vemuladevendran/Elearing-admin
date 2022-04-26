@@ -1,37 +1,34 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-books',
   templateUrl: './view-books.component.html',
   styleUrls: ['./view-books.component.scss']
 })
-export class ViewBooksComponent implements OnInit {
+export class ViewBooksComponent implements OnInit, OnChanges {
   @Output() closeViewBook = new EventEmitter<boolean>();
-
-  constructor() { }
+  @Input() bookDetails: any;
+  showLoader = false;
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }
 
+  ngOnChanges(): void {
+    this.showLoader = true;
+    setTimeout(() => {
+      this.showLoader = false;
+    }, 800);
+  }
+
   async shareData(): Promise<void> {
     try {
-      const response = await fetch('/assets/video-default-thumbnail-img.webp');
-      const blob = await response.blob();
-      const filesArray = [
-        new File(
-          [blob],
-          '/assets/video-default-thumbnail-img.webp',
-          {
-            type: "image/jpeg",
-            lastModified: new Date().getTime()
-          }
-        )
-      ];
       const shareData = {
         url: window.location.href,
         title: 'Course Details',
         text: "hi",
-        files: filesArray,
       };
       navigator.share(shareData);
     } catch (error) {
@@ -41,6 +38,7 @@ export class ViewBooksComponent implements OnInit {
 
   closeViewBookScreen(): void {
     this.closeViewBook.emit(false);
+    this.showLoader = false;
   }
 
 }

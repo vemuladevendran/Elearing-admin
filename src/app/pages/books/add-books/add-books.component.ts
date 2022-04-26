@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthorService } from 'src/app/services/author/author.service';
+import { BookService } from 'src/app/services/book/book.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class AddBooksComponent implements OnInit {
   selectedImagePreviewURL: any = "";
   selectedFile: any;
   authors: any[] = [];
-  booksCategory: any[] = [];
+  booksCategory: any[] = ['abc'];
   createBookForm: FormGroup;
   formData = new FormData();
   bookId = '';
@@ -31,6 +32,7 @@ export class AddBooksComponent implements OnInit {
     private loader: LoaderService,
     private route: ActivatedRoute,
     private router: Router,
+    private bookServe: BookService
   ) {
     this.createBookForm = this.fb.group({
       image: null,
@@ -44,6 +46,7 @@ export class AddBooksComponent implements OnInit {
       totalBooks: ['', [Validators.required]],
       price: ['', [Validators.required]],
       edition: ['', [Validators.required]],
+      description: ['', Validators.required],
     })
     this.bookId = this.route.snapshot.paramMap.get('id') ?? '';
   }
@@ -70,22 +73,22 @@ export class AddBooksComponent implements OnInit {
 
   // get edit form values
   async getEditFormValues(): Promise<void> {
-    // try {
-    //   if (this.bookId === '') {
-    //     return;
-    //   }
-    //   this.loader.show();
-    //   const data = await this.bookServe.getBookById(this.bookId);
-    //   if (data.image !== null && data.image !== undefined) {
-    //     this.selectedImagePreviewURL = data?.image.url;
-    //   }
-    //   this.createBookForm.patchValue(data);
-    // } catch (error) {
-    //   console.log(error);
-    //   this.toast.error('fail to get details')
-    // } finally {
-    //   this.loader.hide();
-    // }
+    try {
+      if (this.bookId === '') {
+        return;
+      }
+      this.loader.show();
+      const data = await this.bookServe.getBookById(this.bookId);
+      if (data.image !== null && data.image !== undefined) {
+        this.selectedImagePreviewURL = data?.image.url;
+      }
+      this.createBookForm.patchValue(data);
+    } catch (error) {
+      console.log(error);
+      this.toast.error('fail to get details')
+    } finally {
+      this.loader.hide();
+    }
   }
 
   // get author list
@@ -99,56 +102,56 @@ export class AddBooksComponent implements OnInit {
   }
   // get books category
   async getBooksCategory(): Promise<void> {
-    // try {
-    //   this.booksCategory = await this.bookServe.getBooksCategory();
-    // } catch (error) {
-    //   console.log(error);
-    //   this.toast.error('Fail to fetch Books Category')
-    // }
+    try {
+      this.booksCategory = await this.bookServe.getBooksCategory();
+    } catch (error) {
+      console.log(error);
+      this.toast.error('Fail to fetch Books Category')
+    }
   }
 
   // on submiting the form
   async createBook(): Promise<void> {
-    // try {
-    //   // checking image file
-    //   if (this.selectedFile !== undefined) {
-    //     this.updateFormData();
-    //     this.loader.show();
+    try {
+      // checking image file
+      if (this.selectedFile !== undefined) {
+        this.updateFormData();
+        this.loader.show();
 
-    //     // checking update form or add form
-    //     if (this.bookId !== '') {
-    //       await this.bookServe.updateBook(this.bookId, this.formData);
-    //       this.toast.success('Updated');
-    //       this.router.navigate(['/books'])
-    //       return;
-    //     }
-    //     await this.bookServe.createBook(this.formData);
-    //     this.toast.success('Created');
-    //     this.router.navigate(['/books'])
-    //     return;
-    //   };
-    //   this.loader.show();
+        // checking update form or add form
+        if (this.bookId !== '') {
+          await this.bookServe.updateBook(this.bookId, this.formData);
+          this.toast.success('Updated');
+          this.router.navigate(['/books'])
+          return;
+        }
+        await this.bookServe.createBook(this.formData);
+        this.toast.success('Created');
+        this.router.navigate(['/books'])
+        return;
+      };
+      this.loader.show();
 
-    //   // checking update form or add form
-    //   if (this.bookId !== '') {
-    //     if (this.selectedImagePreviewURL === '') {
-    //       this.createBookForm.value.image = null;
-    //     }
-    //     await this.bookServe.updateBook(this.bookId, this.createBookForm.value);
-    //     this.toast.success('Updated');
-    //     this.router.navigate(['/books'])
-    //     return;
-    //   }
-    //   await this.bookServe.createBook(this.createBookForm.value);
-    //   this.toast.success('Created');
-    //   this.router.navigate(['/books'])
-    //   return;
-    // } catch (error: any) {
-    //   this.toast.error(error?.error?.message)
-    //   console.log(error);
-    // } finally {
-    //   this.loader.hide();
-    // }
+      // checking update form or add form
+      if (this.bookId !== '') {
+        if (this.selectedImagePreviewURL === '') {
+          this.createBookForm.value.image = null;
+        }
+        await this.bookServe.updateBook(this.bookId, this.createBookForm.value);
+        this.toast.success('Updated');
+        this.router.navigate(['/books'])
+        return;
+      }
+      await this.bookServe.createBook(this.createBookForm.value);
+      this.toast.success('Created');
+      this.router.navigate(['/books'])
+      return;
+    } catch (error: any) {
+      this.toast.error(error?.error?.message)
+      console.log(error);
+    } finally {
+      this.loader.hide();
+    }
   }
 
   // update form data

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { debounceTime } from 'rxjs';
 import { AuthorService } from 'src/app/services/author/author.service';
+import { BookService } from 'src/app/services/book/book.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
@@ -10,24 +12,31 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
   styleUrls: ['./books.component.scss']
 })
 export class BooksComponent implements OnInit {
-  bookList: any[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  bookList: any[] = [];
   authors: any[] = [];
   booksCategory: any[] = [];
   filtersForm: FormGroup;
   filters: any;
   viewBookScreen = false;
+  viewBookdetails: any;
   constructor(
     private authorServe: AuthorService,
     private toast: ToastrService,
     private loader: LoaderService,
     private fb: FormBuilder,
+    private bookServe: BookService,
   ) {
     this.filtersForm = this.fb.group({
       author: [''],
       category: [''],
       title: [''],
-      code: [''],
+      accessCode: [''],
     });
+    this.filtersForm.valueChanges.pipe(debounceTime(800))
+      .subscribe(() => {
+        this.filters = this.filtersForm?.value;
+        this.getBookDetails(this.filters);
+      });
   }
 
   // get author list
@@ -40,16 +49,32 @@ export class BooksComponent implements OnInit {
     }
   }
 
-  async viewBookDetails(event: any) {
+  async viewBookDetails(data: any) {
     try {
+      this.viewBookdetails = data;
       this.viewBookScreen = true;
     } catch (error) {
       console.log(error);
     }
   }
 
+  // get book details
+  async getBookDetails(filters: any): Promise<void> {
+    try {
+      this.loader.show();
+      this.bookList = await this.bookServe.getBooks(filters);
+      this.viewBookdetails = this.bookList[0];
+      this.authorList();
+    } catch (error: any) {
+      this.toast.error(error.error?.message);
+      console.log(error);
+    } finally {
+      this.loader.hide();
+    }
+  }
+
   ngOnInit(): void {
-    this.authorList()
+    this.getBookDetails(this.filters);
   }
 
 }

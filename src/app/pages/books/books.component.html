@@ -38,8 +38,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4">
                     <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Code</mat-label>
-                        <input type="text" matInput placeholder="Code" formControlName="code" />
+                        <mat-label>Access Code</mat-label>
+                        <input type="text" matInput placeholder="Code" formControlName="accessCode" />
                     </mat-form-field>
                 </div>
             </form>
@@ -56,7 +56,7 @@
             <app-book-card [bookList]="bookList" (viewBook)="viewBookDetails($event)"></app-book-card>
         </div>
         <div class="col-12 col-lg-4 view-book-details d-lg-block" [class.d-none]="!viewBookScreen">
-            <app-view-books (closeViewBook)="viewBookScreen = $event"></app-view-books>
+            <app-view-books (closeViewBook)="viewBookScreen = $event" [bookDetails]="viewBookdetails"></app-view-books>
         </div>
     </section>
 </div>

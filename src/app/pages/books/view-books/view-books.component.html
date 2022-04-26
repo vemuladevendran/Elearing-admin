@@ -6,34 +6,53 @@
             </p>
             <h2 class="w-100 text-center" (click)="closeViewBookScreen()">Book Details</h2>
         </div>
-        <mat-card class="mt-5">
+
+        <mat-card class="mt-5 mt-lg-0 position-relative">
+            <!-- content load -->
+            <div class="h-100 w-100 start-0 position-absolute d-flex justify-content-center"
+                style="background-color: rgba(0, 0, 0, 0.575);" *ngIf="showLoader">
+                <div style="margin-top: 50%;">
+                    <div class="spinner-grow text-primary" role="status">
+                    </div>
+                    <div class="spinner-grow text-secondary" role="status">
+                    </div>
+                    <div class="spinner-grow text-success" role="status">
+                    </div>
+                    <div class="spinner-grow text-danger" role="status">
+                    </div>
+                    <div class="spinner-grow text-warning" role="status">
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                    </div>
+                    <div class="spinner-grow text-dark" role="status">
+                    </div>
+                </div>
+            </div>
             <div class="col-12 text-center">
-                <img src="/assets/book-3.png" alt="Book-Image" class="book-preview-img rounded w-100">
+                <img [src]="bookDetails?.image?.url ? bookDetails?.image?.url : '/assets/book-3.png'" alt="book preview"
+                    decoding="async" loading="lazy" class="book-preview-img rounded w-100">
             </div>
             <div class="col-12 mt-2">
                 <div class="d-flex justify-content-between">
-                    <p> Book | February 2022 </p>
-                    <p class="d-flex align-items-center text-danger cursor-pointer" (click)="shareData()">Share <mat-icon>share</mat-icon>
+                    <p> Book | {{bookDetails.publishedYear | date}} </p>
+                    <p class="d-flex align-items-center text-danger cursor-pointer" (click)="shareData()">Share
+                        <mat-icon>share</mat-icon>
                     </p>
                 </div>
-                <p class="fw-bold">World Development Report 2022 : Finance for an Equitable Recovery</p>
-                <p>Author : Test1</p>
+                <p class="fw-bold">{{bookDetails.title}}</p>
+                <p>Author : {{bookDetails.author.authorName}}</p>
                 <p>
-                    World Development Report 2022: Finance for an Equitable Recovery examines the central role of
-                    finance in the economic recovery from COVID-19. Based on an in-depth look at the consequences of the
-                    crisis most likely to affect low- and middle-income economies, it advocates a set of policies and
-                    measures to mitigate the interconnected economic risks stemming from the pandemic—risks that may
-                    become more acute as stimulus measures are withdrawn at both the domestic and global levels
+                    {{bookDetails.description}}
                 </p>
-                <p> Access Code : 123 </p>
-                <p> Category : ABC </p>
-                <p> Price : 123 </p>
-                <p> Edition : 123 </p>
-                <p> PublishedYear : Nov 11, 2020 </p>
-                <p>Total Books Avalible : 15</p>
-                <p>Publisher : deva</p>
-                <p>language : Tamil</p>
-                <p>Visitors count : 12</p>
+                <p> Access Code : {{bookDetails.accessCode}} </p>
+                <p> Category : {{bookDetails.category}} </p>
+                <p> Price : {{bookDetails.price}} </p>
+                <p> Edition : {{bookDetails.edition}} </p>
+                <p> PublishedYear : {{bookDetails.publishedYear | date}} </p>
+                <p>Total Books Avalible : {{bookDetails.totalBooks}}</p>
+                <p>Publisher : {{bookDetails.publisher}}</p>
+                <p>language : {{bookDetails.language}}</p>
+                <p>Visitors count : {{bookDetails.visitor}}</p>
             </div>
         </mat-card>
     </div>
