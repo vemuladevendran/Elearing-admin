@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
+import { VideoFormPreviewComponent } from './add-course-video/video-form-preview/video-form-preview.component';
+import { VideoUploadFormComponent } from './add-course-video/video-upload-form/video-upload-form.component';
 
 const materialModules = [
   MatInputModule,
@@ -24,7 +26,9 @@ const materialModules = [
 @NgModule({
   declarations: [
     AddCourseVideoComponent,
-    AddCourseMaterialComponent
+    AddCourseMaterialComponent,
+    VideoFormPreviewComponent,
+    VideoUploadFormComponent
   ],
   imports: [
     CommonModule,
