@@ -7,7 +7,8 @@ import { SettingsService } from '../settings/settings.service';
   providedIn: 'root'
 })
 export class VideoService {
-
+  videoFormDetails: any;
+  
   constructor(private http: HttpClient,
     private settings: SettingsService
   ) { }

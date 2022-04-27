@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/services/loader/loader.service';
@@ -10,16 +10,16 @@ import { environment } from 'src/environments/environment';
   templateUrl: './video-upload-form.component.html',
   styleUrls: ['./video-upload-form.component.scss']
 })
-export class VideoUploadFormComponent implements OnInit {
+export class VideoUploadFormComponent implements OnInit, OnChanges {
   @ViewChild('videoFile') videoFileInput: ElementRef<HTMLInputElement> | undefined;
-  @ViewChild('courseImage') fileInput: ElementRef<HTMLInputElement> | undefined;
+  @ViewChild('videoThumbnail') fileInput: ElementRef<HTMLInputElement> | undefined;
   courseId = '';
   selectedImagePreviewURL: any = "";
   selectedFile: any;
   selectedVideoFile: any;
   preSignedUrl: any;
   awsVideoUrl: any;
-
+  @Input() formDetails: any;
   constructor(
     private loader: LoaderService,
     private toast: ToastrService,
@@ -27,8 +27,8 @@ export class VideoUploadFormComponent implements OnInit {
     private sanitizer: DomSanitizer,
   ) { }
 
-   // image change handle
-   handleVideoFileSelection(): void {
+  // image change handle
+  handleVideoFileSelection(): void {
     const [file] = this.fileInput?.nativeElement?.files as any as File[];
     if (file) {
       this.selectedFile = file;
@@ -74,7 +74,17 @@ export class VideoUploadFormComponent implements OnInit {
     }
   }
 
+  ngOnChanges(): void {
+    this.getPreviousStepFormDetails();
+  }
+
+  private getPreviousStepFormDetails(): void {
+    // this.formDetails = this.videoServe.videoFormDetails;
+    console.log(this.formDetails);
+  }
+
   ngOnInit(): void {
+    this.getPreviousStepFormDetails();
   }
 
 }
