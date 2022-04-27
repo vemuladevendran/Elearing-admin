@@ -1,6 +1,42 @@
-<section>
-    <div>
-        <input type="file" accept=" video/*" #videoFile (change)="handleFileSelection()">
+<div class="container">
+    <div class="row">
+        <!-- preview details -->
+        <section class="col-12 col-lg-6">
+            <p class="text-primary fw-bold">Title: <span class="text-dark">Test Video</span></p>
+            <p class="text-primary fw-bold">Video Duration: <span class="text-dark">Test Video</span></p>
+            <p class="text-primary fw-bold">Description: <span class="text-dark">Test Video</span></p>
+            <p class="text-primary fw-bold">Priority: <span class="text-dark">Test Video</span></p>
+            <!-- video thubnail -->
+            <section class="col-12 col-md-6 col-xl-5 mt-5">
+                <!-- course Thumbnail -->
+                <div class="position-relative cursor-pointer" *ngIf="selectedImagePreviewURL === ''">
+                    <img [src]="selectedImagePreviewURL === '' ? '/assets/default-thumbnail-image.png' : selectedImagePreviewURL "
+                        alt="Upload thumbnail image" class="w-100 thumbnail-img" (click)="openFileSelectionDialog()">
+                    <p class="upload-title w-100 text-center text-dark fw-bold" (click)="openFileSelectionDialog()">Upload
+                        Thumbnail</p>
+                </div>
+                <!-- after selected thumbnail image -->
+                <div class="position-relative cursor-pointer" *ngIf="selectedImagePreviewURL !== ''">
+                    <img [src]="selectedImagePreviewURL" alt="thumbnail image" class="w-100 thumbnail-img"
+                        (click)="openFileSelectionDialog()">
+    
+                    <mat-icon class="close-icon cursor-pointer position-absolute top-0 end-2"
+                        (click)="selectedImagePreviewURL = ''" *ngIf="selectedImagePreviewURL !== ''">
+                        cancel
+                    </mat-icon>
+                </div>
+                <input id="thumbnail-file" (change)="handleVideoFileSelection()" accept="image/*" type="file" class="d-none"
+                    #courseImage />
+            </section>
+        </section>
+
+        <!-- selected video details -->
+        <section class="col-12 col-lg-6">
+            <div>
+                <p class="text-danger">Upload video</p>
+                <input type="file" accept=" video/*" #videoFile (change)="handleFileSelection()">
+            </div>
+            <button class="btn btn-primary mt-5" (click)="uploadVideo()">Upload</button>
+        </section>
     </div>
-    <button class="btn btn-primary mt-5" (click)="uploadVideo()">Upload</button>
-</section>
+</div>

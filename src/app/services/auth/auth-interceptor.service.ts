@@ -20,31 +20,31 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
   private async handleReq(req: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
-    const token: any = await this.tokenServ.getToken();
-    if (!!token) {
-      req = req.clone({
-        setHeaders: {
-          Authorization: `${token}`
-        }
-      });
+    // const token: any = await this.tokenServ.getToken();
+    // if (!!token) {
+    //   req = req.clone({
+    //     setHeaders: {
+    //       Authorization: `${token}`
+    //     }
+    //   });
 
-    } else {
-      this.auth.logout();
-    }
+    // } else {
+    //   this.auth.logout();
+    // }
 
 
     return lastValueFrom(next.handle(req)
     .pipe(
-      catchError(error => {
-        const messages = ['jwt expired', 'Session Expired'];
-        if ((error.status === 401) && messages.includes(error?.error.message)) {
-          this.auth.logout();
-        }
-        if (error.status === 403) {
-          console.warn('You can not access this resource');
-        }
-        return throwError(() => error);
-      })
+      // catchError(error => {
+      //   const messages = ['jwt expired', 'Session Expired'];
+      //   if ((error.status === 401) && messages.includes(error?.error.message)) {
+      //     this.auth.logout();
+      //   }
+      //   if (error.status === 403) {
+      //     console.warn('You can not access this resource');
+      //   }
+      //   return throwError(() => error);
+      // })
     ));
 
   }

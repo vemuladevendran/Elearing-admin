@@ -17,7 +17,7 @@ export class AddBooksComponent implements OnInit {
   selectedImagePreviewURL: any = "";
   selectedFile: any;
   authors: any[] = [];
-  booksCategory: any[] = ['abc'];
+  booksCategory: any[] = [];
   createBookForm: FormGroup;
   formData = new FormData();
   bookId = '';

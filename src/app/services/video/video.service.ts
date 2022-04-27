@@ -18,10 +18,9 @@ export class VideoService {
     return lastValueFrom(this.http.post(url, data));
   }
 
-  getAwsVideoUrl(preSignedUrl: string, data: File): Promise<any> {
-    const url = preSignedUrl;
+  getAwsVideoUrl(preSignedUrl: string, file: File): Promise<any> {
     const headers = new HttpHeaders();
-    headers.append('Content-Type', data.type);
-    return lastValueFrom(this.http.put(url, data, { headers: headers }));
+    headers.append('Content-Type', file.type);
+    return lastValueFrom(this.http.put(preSignedUrl, file, { headers: headers }));
   }
 }
