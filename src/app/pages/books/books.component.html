@@ -53,7 +53,7 @@
     <!-- book preview cards -->
     <section class="row justify-content-around" *ngIf="bookList.length !== 0">
         <div class="col-12 col-lg-8">
-            <app-book-card [bookList]="bookList" (viewBook)="viewBookDetails($event)"></app-book-card>
+            <app-book-card [bookList]="bookList" (viewBook)="viewBookDetails($event)" (deleteBookId)="deleteBook($event)"></app-book-card>
         </div>
         <div class="col-12 col-lg-4 view-book-details d-lg-block" [class.d-none]="!viewBookScreen">
             <app-view-books (closeViewBook)="viewBookScreen = $event" [bookDetails]="viewBookdetails"></app-view-books>

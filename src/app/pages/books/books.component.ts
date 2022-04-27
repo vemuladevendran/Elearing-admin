@@ -5,6 +5,7 @@ import { debounceTime } from 'rxjs';
 import { AuthorService } from 'src/app/services/author/author.service';
 import { BookService } from 'src/app/services/book/book.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-books',
@@ -70,6 +71,33 @@ export class BooksComponent implements OnInit {
       console.log(error);
     } finally {
       this.loader.hide();
+    }
+  }
+
+  // delete book details
+  async deleteBook(id: string): Promise<void> {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await this.bookServe.deleteBook(id);
+        this.toast.success("Deleted");
+        this.getBookDetails(this.filters);
+      } catch (error: any) {
+        console.log(error);
+        this.toast.error(error.error?.messge);
+      }
+      finally {
+        this.loader.hide();
+      }
     }
   }
 

@@ -12,10 +12,12 @@
                     <div class="col-12 col-md-7 d-flex flex-column justify-content-center">
                         <p> Book | {{book.publishedYear | date}} </p>
                         <p class="fw-bold">{{book.title}}</p>
+                        <p>Access Code : <span class="fw-bold">{{book.accessCode}}</span></p>
                         <p>Author : {{book.author.authorName}}</p>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <mat-icon title="Delete" class="text-danger cursor-pointer me-3">delete </mat-icon>
+                                <mat-icon title="Delete" class="text-danger cursor-pointer me-3"
+                                    (click)="deleteBook(book._id)">delete </mat-icon>
                                 <mat-icon title="edit details" class="text-primary cursor-pointer"
                                     [routerLink]="['/books/edit',book._id]">edit </mat-icon>
                             </div>

@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class BookCardComponent implements OnInit {
   @Input() bookList: any[] = [];
   @Output() viewBook = new EventEmitter<string>();
+  @Output() deleteBookId = new EventEmitter<string>();
   activeBookId = '';
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +33,11 @@ export class BookCardComponent implements OnInit {
     await this.router.navigate([`/books/${data._id}`]);
     this.getActiveBookDetails();
     this.viewBook.emit(data);
+  }
+
+  // delete book details;
+  deleteBook(id: string): void {
+    this.deleteBookId.emit(id);
   }
 
 }
