@@ -1,8 +1,9 @@
-.book-preview-img{
-    max-height: 200px;
+.book-preview-img {
+    min-height: 180px;
+    max-height: 180px;
     max-width: 150px;
 }
 
-.active-book{
+.active-book {
     background-color: #d8eff2;
 }
