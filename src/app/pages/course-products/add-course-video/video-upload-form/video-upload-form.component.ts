@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/services/loader/loader.service';
@@ -10,7 +11,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './video-upload-form.component.html',
   styleUrls: ['./video-upload-form.component.scss']
 })
-export class VideoUploadFormComponent implements OnInit, OnChanges {
+export class VideoUploadFormComponent implements OnInit {
   @ViewChild('videoFile') videoFileInput: ElementRef<HTMLInputElement> | undefined;
   @ViewChild('videoThumbnail') fileInput: ElementRef<HTMLInputElement> | undefined;
   courseId = '';
@@ -20,15 +21,19 @@ export class VideoUploadFormComponent implements OnInit, OnChanges {
   preSignedUrl: any;
   awsVideoUrl: any;
   @Input() formDetails: any;
+  formData = new FormData();
+  processVideoLoaded = false;
+
   constructor(
     private loader: LoaderService,
     private toast: ToastrService,
     private videoServe: VideoService,
     private sanitizer: DomSanitizer,
+    private location: Location,
   ) { }
 
-  // image change handle
-  handleVideoFileSelection(): void {
+  // video change handle
+  handleVideoThumbnailSelection(): void {
     const [file] = this.fileInput?.nativeElement?.files as any as File[];
     if (file) {
       this.selectedFile = file;
@@ -55,36 +60,73 @@ export class VideoUploadFormComponent implements OnInit, OnChanges {
         this.toast.info("Please select the file");
         return;
       }
+      this.processVideoLoaded = true;
       const data = {
         fileName: this.selectedVideoFile.name,
         fileType: this.selectedVideoFile.type,
       }
       this.loader.show();
       this.preSignedUrl = await this.videoServe.getPreSignedUrl(data);
-      console.log(this.preSignedUrl?.url);
+      this.loader.hide();
 
       const url = await this.videoServe.getAwsVideoUrl(this.preSignedUrl.url, this.selectedVideoFile);
       this.awsVideoUrl = environment.VIDEO_DOMAIN_URL + this.selectedVideoFile.name
-
+      this.formDetails["video"] = this.awsVideoUrl;
+      // uploading data to database
+      this.createNewVideo();
     } catch (error: any) {
       console.log(error);
-      this.toast.error("Fail to upoload")
+      this.toast.error("Fail to upoload");
+    } finally {
+      this.processVideoLoaded = false;
+    }
+  }
+
+  async createNewVideo(): Promise<void> {
+    try {
+      // checking image file
+      if (this.selectedFile !== undefined) {
+        this.updateFormData();
+        this.loader.show();
+
+        await this.videoServe.createCourseVideo(this.formData);
+        this.toast.success('Created');
+        this.goBack();
+        return;
+      };
+      // without thumbnail image
+      await this.videoServe.createCourseVideo(this.formDetails);
+      this.toast.success('Created');
+      this.goBack();
+      return;
+    } catch (error: any) {
+      console.log(error);
+      this.toast.error(error?.error?.message);
     } finally {
       this.loader.hide();
     }
   }
 
-  ngOnChanges(): void {
-    this.getPreviousStepFormDetails();
+  goBack(): void {
+    this.location.back();
   }
 
-  private getPreviousStepFormDetails(): void {
-    // this.formDetails = this.videoServe.videoFormDetails;
-    console.log(this.formDetails);
+  // update form data
+  updateFormData(): void {
+    const formValues = this.formDetails;
+    Object.entries(formValues).forEach(([key, value]: any) => {
+      if (Array.isArray(value)) {
+        value.forEach(v => {
+          this.formData.append(key, v);
+        })
+      } else {
+        this.formData.append(key, value);
+      }
+    })
+    this.formData.append('videoThumbnail', this.selectedFile);
   }
 
   ngOnInit(): void {
-    this.getPreviousStepFormDetails();
   }
 
 }

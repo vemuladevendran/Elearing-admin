@@ -27,7 +27,7 @@
                         cancel
                     </mat-icon>
                 </div>
-                <input id="thumbnail-file" (change)="handleVideoFileSelection()" accept="image/*" type="file"
+                <input id="thumbnail-file" (change)="handleVideoThumbnailSelection()" accept="image/*" type="file"
                     class="d-none" #videoThumbnail />
             </section>
         </section>
@@ -37,8 +37,10 @@
             <div>
                 <p class="text-danger">Upload video</p>
                 <input type="file" accept=" video/*" #videoFile (change)="handleFileSelection()">
+                <p class="mt-4 d-flex align-items-center text-success" *ngIf="processVideoLoaded">Processing Video... <span class="ms-3 spinner-border text-primary" role="status">
+                    </span></p>
             </div>
-            <button class="btn btn-primary mt-5" (click)="uploadVideo()">Upload</button>
+            <button class="btn btn-primary mt-5" (click)="uploadVideo()" [disabled]="processVideoLoaded">Upload</button>
         </section>
     </div>
 </div>

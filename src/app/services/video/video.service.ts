@@ -8,7 +8,7 @@ import { SettingsService } from '../settings/settings.service';
 })
 export class VideoService {
   videoFormDetails: any;
-  
+
   constructor(private http: HttpClient,
     private settings: SettingsService
   ) { }
@@ -23,5 +23,11 @@ export class VideoService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', file.type);
     return lastValueFrom(this.http.put(preSignedUrl, file, { headers: headers }));
+  }
+
+  // create course video
+  createCourseVideo(data: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/video`;
+    return lastValueFrom(this.http.post(url, data));
   }
 }
