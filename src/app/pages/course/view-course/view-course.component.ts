@@ -18,7 +18,7 @@ export class ViewCourseComponent implements OnInit {
   courseDetails: any;
   defaultThumbnailImg = '/assets/default-thumbnail-image.png';
   stepperOrientation: Observable<StepperOrientation>;
-
+  
   constructor(
     private loader: LoaderService,
     private toast: ToastrService,
