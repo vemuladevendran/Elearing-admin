@@ -5,49 +5,34 @@
     </span>
 </div>
 
-<mat-stepper #stepper linear>
-    <mat-step [stepControl]="addMaterialForm">
-        <ng-template matStepLabel>Details Form</ng-template>
-        <p class="fw-bold fs-5 mb-3" *ngIf="courseId !== ''"> This file will upload under <span class="text-success">
-                {{courseName}}
-            </span>course </p>
-        <form class="row" [formGroup]="addMaterialForm">
-            <div class="col-12 col-md-6 col-xl-5">
-                <div>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Material Title</mat-label>
-                        <input matInput formControlName="title">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Category</mat-label>
-                        <mat-select formControlName="category">
-                            <mat-option [value]="c" *ngFor="let c of categoryList">
-                                {{c}}
-                            </mat-option>
-                            <mat-option value="others">Others</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Description</mat-label>
-                        <textarea matInput placeholder="Description" formControlName="description"></textarea>
-                    </mat-form-field>
-                </div>
+<!-- form -->
+
+<div class="mt-5">
+    <p class="fw-bold fs-5 mb-3" *ngIf="courseId !== ''"> This file will upload under <span class="text-success">
+            {{courseName}}
+        </span>course </p>
+    <form class="row" [formGroup]="addMaterialForm">
+        <div class="col-12 col-md-6 col-xl-5">
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Material Title</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
             </div>
             <div>
-                <button class="btn btn-primary" matStepperNext>Next</button>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                </mat-form-field>
             </div>
-        </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>File Upload</ng-template>
-        second
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Preview Form</ng-template>
-        Third
-    </mat-step>
-</mat-stepper>
+        </div>
+        <!-- file upload -->
+        <div class="my-3">
+            <p class="text-danger">select material to upload</p>
+            <input type="file" accept=".pdf" #materialFile>
+        </div>
+        <div>
+            <button class="btn btn-primary">Upload</button>
+        </div>
+    </form>
+</div>
