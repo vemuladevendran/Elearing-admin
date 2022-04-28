@@ -15,7 +15,9 @@ export class VideoCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.videosList);
+    if (this.videosList === null) {
+      this.videosList = [];
+    }
   }
 
 }
