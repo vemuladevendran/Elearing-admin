@@ -7,7 +7,7 @@ export const environment = {
   API_HOST: 'http://localhost:3001',
   // API_HOST: 'https://e-library-api.herokuapp.com',
   API_BASE: '/api/v2',
-  VIDEO_DOMAIN_URL: 'library243.s3.ap-south-1.amazonaws.com/video/'
+  VIDEO_DOMAIN_URL: 'https://library243.s3.ap-south-1.amazonaws.com/video/'
 };
 
 /*

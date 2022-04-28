@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-video-card',
@@ -7,9 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class VideoCardComponent implements OnInit {
   @Input() videosList: any[] = [];
-  constructor() { }
+  defaultThumbnailImg = "/assets/video-default-thumbnail-img.webp";
+
+  constructor(
+    private sanitizer: DomSanitizer,
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.videosList);
   }
 
 }

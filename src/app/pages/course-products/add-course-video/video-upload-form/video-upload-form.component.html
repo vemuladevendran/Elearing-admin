@@ -8,8 +8,7 @@
             <p class="text-primary fw-bold">Description: <span class="text-dark">{{formDetails?.description}}</span></p>
             <p class="text-primary fw-bold">Priority: <span class="text-dark">{{formDetails?.priority}}</span></p>
             <!-- video thubnail -->
-            <section class="col-12 col-md-6 col-xl-5 mt-5">
-                <!-- course Thumbnail -->
+            <!-- <section class="col-12 col-md-6 col-xl-5 mt-5">
                 <div class="position-relative cursor-pointer" *ngIf="selectedImagePreviewURL === ''">
                     <img [src]="selectedImagePreviewURL === '' ? '/assets/default-thumbnail-image.png' : selectedImagePreviewURL "
                         alt="Upload thumbnail image" class="w-100 thumbnail-img" (click)="openFileSelectionDialog()">
@@ -17,7 +16,6 @@
                         Upload
                         Thumbnail</p>
                 </div>
-                <!-- after selected thumbnail image -->
                 <div class="position-relative cursor-pointer" *ngIf="selectedImagePreviewURL !== ''">
                     <img [src]="selectedImagePreviewURL" alt="thumbnail image" class="w-100 thumbnail-img"
                         (click)="openFileSelectionDialog()">
@@ -29,7 +27,7 @@
                 </div>
                 <input id="thumbnail-file" (change)="handleVideoThumbnailSelection()" accept="image/*" type="file"
                     class="d-none" #videoThumbnail />
-            </section>
+            </section> -->
         </section>
 
         <!-- selected video details -->
