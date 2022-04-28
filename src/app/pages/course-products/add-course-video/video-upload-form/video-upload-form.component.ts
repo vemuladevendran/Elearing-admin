@@ -123,6 +123,7 @@ export class VideoUploadFormComponent implements OnInit {
         this.formData.append(key, value);
       }
     })
+    // console.log(this.selectedFile, this.selectedFile, 'file checking')
     this.formData.append('videoThumbnail', this.selectedFile);
   }
 

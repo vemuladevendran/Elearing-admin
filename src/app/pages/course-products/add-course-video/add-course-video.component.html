@@ -6,8 +6,8 @@
         </span>
     </div>
     <mat-stepper #stepper linear>
-        <mat-step [stepControl]="addVideoForm">
-            <!-- <mat-step [stepControl]="addVideoForm"> -->
+        <!-- <mat-step> -->
+            <mat-step [stepControl]="addVideoForm">
             <ng-template matStepLabel>Details Form</ng-template>
             <p class="fw-bold fs-5 mb-3" *ngIf="courseId !== ''"> This video will upload under <span
                     class="text-success">
