@@ -11,7 +11,7 @@
     <p class="fw-bold fs-5 mb-3" *ngIf="courseId !== ''"> This file will upload under <span class="text-success">
             {{courseName}}
         </span>course </p>
-    <form class="row" [formGroup]="addMaterialForm">
+    <form class="row" [formGroup]="addMaterialForm" (ngSubmit)="uploadVideoMaterial()">
         <div class="col-12 col-md-6 col-xl-5">
             <div>
                 <mat-form-field appearance="outline" class="w-100">
@@ -29,10 +29,12 @@
         <!-- file upload -->
         <div class="my-3">
             <p class="text-danger">select material to upload</p>
-            <input type="file" accept=".pdf" #materialFile>
+            <input type="file" accept=".pdf" #materialFile (change)="handleFileSelection()">
+            <p class="mt-4 d-flex align-items-center text-success" *ngIf="fileUploadLoader">Processing Video... <span class="ms-3 spinner-border text-primary" role="status">
+            </span></p>
         </div>
         <div>
-            <button class="btn btn-primary">Upload</button>
+            <button class="btn btn-primary" [disabled]="fileUploadLoader">Upload</button>
         </div>
     </form>
 </div>

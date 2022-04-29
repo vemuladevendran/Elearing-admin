@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { MaterialsService } from 'src/app/services/materials/materials.service';
 import { VideoService } from 'src/app/services/video/video.service';
 import { environment } from 'src/environments/environment';
 
@@ -30,13 +31,11 @@ export class AddCourseMaterialComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private videoServe: VideoService,
+    private materialServe: MaterialsService,
   ) {
     this.addMaterialForm = this.fb.group({
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      // category: ['', [Validators.required]],
-      course: ['', [Validators.required]],
-      material: ['', [Validators.required]]
     })
     this.courseId = this.route.snapshot.paramMap.get('id') ?? '';
     this.courseName = this.route.snapshot.paramMap.get('course') ?? '';
@@ -73,7 +72,7 @@ export class AddCourseMaterialComponent implements OnInit {
       console.log(error);
       this.toast.error("Fail to upload")
     } finally {
-
+       this.fileUploadLoader = false;
     }
   }
 
@@ -82,11 +81,14 @@ export class AddCourseMaterialComponent implements OnInit {
       this.loader.show();
       const data = this.addMaterialForm.value;
       data.course = this.courseId;
-      console.log(data);
+      // creating material
+      await this.materialServe.createCourseMaterial(data);
+      this.toast.success('Created');
+      this.goBack();
     } catch (error: any) {
       console.log(error);
       this.toast.error(error.error.message)
-    }finally{
+    } finally {
       this.loader.hide();
     }
   }

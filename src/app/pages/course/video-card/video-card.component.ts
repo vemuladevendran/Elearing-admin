@@ -11,7 +11,6 @@ export class VideoCardComponent implements OnInit {
   defaultThumbnailImg = "/assets/video-default-thumbnail-img.webp";
 
   constructor(
-    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {

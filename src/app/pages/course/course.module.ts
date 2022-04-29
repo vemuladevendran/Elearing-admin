@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ViewCourseComponent } from './view-course/view-course.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { MaterialCardComponent } from './material-card/material-card.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 const materialModules = [
   MatInputModule,
@@ -30,12 +31,13 @@ const materialModules = [
     AddCourseComponent,
     ViewCourseComponent,
     VideoCardComponent,
-    MaterialCardComponent
+    MaterialCardComponent,
   ],
   imports: [
     CommonModule,
     CourseRoutingModule,
     ReactiveFormsModule,
+    PdfViewerModule,
     ...materialModules,
   ]
 })

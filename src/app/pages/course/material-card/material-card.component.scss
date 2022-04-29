@@ -3,3 +3,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.material-pdf {
+    height: 100vh;
+}
+
+.material-count {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    background-color: #3f51b5;
+    color: #fff;
+}
+
+@media screen and(max-width: 768px) {
+    .material-pdf,
+    .pdf-viewer-title {
+        width: 100% !important;
+    }
+}
