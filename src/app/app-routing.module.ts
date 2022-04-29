@@ -4,26 +4,29 @@ import { AppShellComponent } from './components/app-shell/app-shell.component';
 import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
-  // {
-  //   path: 'login',
-  //   loadChildren: () =>
-  //     import('./auth/login/login.module').then((m) => m.LoginModule),
-  // },
-  // {
-  //   path: 'signup',
-  //   loadChildren: () =>
-  //     import('./auth/signup/signup.module').then((m) => m.SignupModule),
-  // },
-  // {
-  //   path: 'forgot-password',
-  //   loadChildren: () =>
-  //     import('./auth/forgot-password/forgot-password.module').then(
-  //       (m) => m.ForgotPasswordModule
-  //     ),
-  // },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./auth/login/login.module').then((m) => m.LoginModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('./auth/signup/signup.module').then((m) => m.SignupModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () =>
+      import('./auth/forgot-password/forgot-password.module').then(
+        (m) => m.ForgotPasswordModule
+      ),
+  },
   {
     path: '',
     component: AppShellComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
@@ -36,7 +39,7 @@ const routes: Routes = [
       { path: 'course-products', loadChildren: () => import('./pages/course-products/course-products.module').then(m => m.CourseProductsModule) },
       { path: 'books', loadChildren: () => import('./pages/books/books.module').then(m => m.BooksModule) },
       { path: 'authors', loadChildren: () => import('./pages/author/author.module').then(m => m.AuthorModule) },
-
+      { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule) },
     ],
   },
 ];

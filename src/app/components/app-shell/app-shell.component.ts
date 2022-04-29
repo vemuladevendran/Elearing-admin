@@ -31,11 +31,11 @@ export class AppShellComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // if (this.router.url === '/') {
-    //   this.router.navigate(['']);
-    // }
-    // await this.setUserDetails();
-    // this.getUserDetails();
+    if (this.router.url === '/') {
+      this.router.navigate(['']);
+    }
+    await this.setUserDetails();
+    this.getUserDetails();
   }
 
   getUserDetails() {
@@ -46,7 +46,7 @@ export class AppShellComponent implements OnInit {
     try {
       this.loaderService.show();
       const data = await this.auth.getUserDetails();
-      this.token.setUserName(data.user);
+      this.token.setUserName(data);
     } catch (error) {
       console.log(error);
       this.auth.logout();

@@ -21,15 +21,15 @@ export class AuthService {
     private router: Router,
     private token: TokenService,
   ) {
-   }
+  }
 
   login(data: any): Promise<any> {
-    const url = `${this.settings.API_BASE_URL}/auth/admin`;
+    const url = `${this.settings.API_BASE_URL}/admin/login`;
     return lastValueFrom(this.http.post(url, data))
   }
 
   getUserDetails(): Promise<any> {
-    const url = `${this.settings.API_BASE_URL}/auth/admin/me`;
+    const url = `${this.settings.API_BASE_URL}/admin/me`;
     return lastValueFrom(this.http.get(url))
   }
 

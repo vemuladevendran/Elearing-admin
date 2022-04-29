@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <!-- add admin -->
+
+        <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
+            <h2 class="m-0">Admins List</h2>
+            <!-- add admin btn -->
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="add-admin">
+                    <span class="h6 pe-1">&#43;</span> Add Admin
+                </button>
+            </div>
+        </div>
+
+        <!-- admin list -->
+        <section class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Mobile Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let admin of adminList; index as i">
+                        <th scope="row">{{i + 1}}</th>
+                        <td>{{admin.username}}</td>
+                        <td>{{admin.mobileNumber}}</td>
+                        <td>{{admin.email}}</td>
+                        <td>
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
+                                class="text-danger cursor-pointer" (click)="deleteBook(admin._id)">delete</mat-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>

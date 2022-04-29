@@ -33,24 +33,24 @@ export class LoginComponent implements OnInit {
   }
 
   async login(): Promise<void> {
-    // try {
-    //   this.loader.show();
-    //   const data = await this.authServe.login(this.loginForm.value);
+    try {
+      this.loader.show();
+      const data = await this.authServe.login(this.loginForm.value);
 
-    //   if (!data.token) {
-    //     window.alert('Failed to login');
-    //     return;
-    //   }
-    //   this.tokenserve.saveToken(data?.token);
-    //   this.tokenserve.setUserName(data?.user);
-    //   this.router.navigate(['/books']);
-    //   this.invalidDetails = '';
-    // } catch (error: any) {
-    //   console.log(error);
-    //   this.invalidDetails = error?.error.message
-    // } finally {
-    //   this.loader.hide();
-    // }
+      if (!data.token) {
+        window.alert('Failed to login');
+        return;
+      }
+      this.tokenserve.saveToken(data?.token);
+      this.tokenserve.setUserName(data?.user);
+      this.router.navigate(['/books']);
+      this.invalidDetails = '';
+    } catch (error: any) {
+      console.log(error);
+      this.invalidDetails = error?.error.message
+    } finally {
+      this.loader.hide();
+    }
   }
 
   ngOnInit(): void { }
