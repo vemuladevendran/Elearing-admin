@@ -1,0 +1,14 @@
+<div>
+    <h2 class="text-primary">Pending request</h2>
+    <mat-stepper #stepper linear>
+        <!-- <mat-step> -->
+        <mat-step>
+            <ng-template matStepLabel>Students Pending Request</ng-template>
+            <app-student-request></app-student-request>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Members Pending Request</ng-template>
+            <app-member-request></app-member-request>
+        </mat-step>
+    </mat-stepper>
+</div>

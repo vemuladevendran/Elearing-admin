@@ -40,6 +40,7 @@ const routes: Routes = [
       { path: 'books', loadChildren: () => import('./pages/books/books.module').then(m => m.BooksModule) },
       { path: 'authors', loadChildren: () => import('./pages/author/author.module').then(m => m.AuthorModule) },
       { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule) },
+      { path: 'student-request', loadChildren: () => import('./pages/pending-student-request/pending-student-request.module').then(m => m.PendingStudentRequestModule) },
     ],
   },
 ];
