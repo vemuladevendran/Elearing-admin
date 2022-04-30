@@ -5,7 +5,8 @@
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1" *ngFor="let s of members; index as i">
             <mat-card>
                 <div class="d-flex justify-content-end">
-                    <p class="material-count m-0 text-center me-2">{{i + 1}}</p>
+                    <p class="material-count m-0 d-flex justify-content-center align-items-center me-2"><span>{{i +
+                            1}}</span></p>
                 </div>
                 <p> Name: <span class="fw-bold">{{s.name}}</span></p>
                 <p> Email: <span class="fw-bold">{{s.email}}</span></p>

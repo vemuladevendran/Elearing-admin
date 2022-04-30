@@ -64,6 +64,7 @@ export class VideoUploadFormComponent implements OnInit {
       const data = {
         fileName: this.selectedVideoFile.name,
         fileType: this.selectedVideoFile.type,
+        folder: 'video'
       }
       this.loader.show();
       this.preSignedUrl = await this.videoServe.getPreSignedUrl(data);

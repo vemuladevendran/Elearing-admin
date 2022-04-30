@@ -8,7 +8,7 @@ import { SettingsService } from '../settings/settings.service';
 })
 export class VideoService {
   videoFormDetails: any;
-
+  contentType: any;
   constructor(private http: HttpClient,
     private settings: SettingsService
   ) { }
@@ -20,9 +20,10 @@ export class VideoService {
   }
 
   getAwsVideoUrl(preSignedUrl: string, file: File): Promise<any> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', file.type);
-    return lastValueFrom(this.http.put(preSignedUrl, file, { headers: headers }));
+    this.contentType = file.type;
+    // const headers = new HttpHeaders();
+    // headers.append('Content-Type', file.type);
+    return lastValueFrom(this.http.put(preSignedUrl, file));
   }
 
   // create course video

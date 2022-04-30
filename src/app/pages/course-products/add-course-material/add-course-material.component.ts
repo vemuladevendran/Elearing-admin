@@ -60,6 +60,7 @@ export class AddCourseMaterialComponent implements OnInit {
       const data = {
         fileName: this.selectedMaterialFile.name,
         fileType: this.selectedMaterialFile.type,
+        folder: 'material'
       }
       this.loader.show();
       this.preSignedUrl = await this.videoServe.getPreSignedUrl(data);
@@ -72,7 +73,8 @@ export class AddCourseMaterialComponent implements OnInit {
       console.log(error);
       this.toast.error("Fail to upload")
     } finally {
-       this.fileUploadLoader = false;
+      this.loader.hide();
+      this.fileUploadLoader = false;
     }
   }
 

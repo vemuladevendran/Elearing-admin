@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       }
       this.tokenserve.saveToken(data?.token);
       this.tokenserve.setUserName(data?.user);
-      this.router.navigate(['/books']);
+      this.router.navigate(['/course']);
       this.invalidDetails = '';
     } catch (error: any) {
       console.log(error);
