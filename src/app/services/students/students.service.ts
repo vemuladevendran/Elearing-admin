@@ -19,4 +19,16 @@ export class StudentsService {
       params: filters,
     }));
   }
+
+  // approve student
+  approveRequest(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/student/approve-student/${id}`;
+    return lastValueFrom(this.http.put(url, {}))
+  }
+
+  // reject student
+  rejectRequest(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/student/dismiss-student/${id}`;
+    return lastValueFrom(this.http.delete(url))
+  }
 }
