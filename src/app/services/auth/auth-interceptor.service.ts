@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { from, lastValueFrom, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { VideoService } from '../video/video.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +26,11 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     const token: any = this.tokenServ.getToken();
     if (!!token) {
-      if (req.url.includes('https://library243.s3.ap-south-1.amazonaws.com')) {
+      if (req.url.includes(environment.AWS_DOMAIN_URL)) {
         const headers = new HttpHeaders();
         headers.append('Content-Type', this.videoServe.contentType);
       }
-      else{
+      else {
         req = req.clone({
           setHeaders: {
             Authorization: `${token}`

@@ -1,6 +1,6 @@
 <div class="col-12">
     <div class="row">
-        <div class="col-12 col-md-4 col-xl-3 mt-2" *ngFor="let material of materialsList; index as i">
+        <div class="col-12 col-md-6 col-xl-3 mt-2" *ngFor="let material of materialsList; index as i">
             <mat-card class="d-flex justify-content-between" [id]="material._id">
                 <div class="title-text text-capitalize d-flex align-items-center">
                     <p class="material-count m-0 d-flex justify-content-center align-items-center me-2"><span>{{i +
@@ -20,8 +20,7 @@
     <!-- pdf viewer details -->
     <div *ngIf="selectedPdf" class="mt-5 d-flex flex-column align-items-center" id="pdf-viewer">
         <div class="pdf-viewer-title w-75 d-flex justify-content-around fs-bold text-capitalize py-3 bg-info">
-            <a [routerLink]="selectedPdf._id" class="d-flex align-items-center text-danger cursor-pointer"
-                (click)="removeSelectedPdf()">
+            <a class="d-flex align-items-center text-danger cursor-pointer" (click)="removeSelectedPdf()">
                 <mat-icon>arrow_back</mat-icon>Back
             </a>
             <h2>

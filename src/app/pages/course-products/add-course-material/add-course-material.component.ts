@@ -66,7 +66,7 @@ export class AddCourseMaterialComponent implements OnInit {
       this.preSignedUrl = await this.videoServe.getPreSignedUrl(data);
       this.loader.hide();
       const url = await this.videoServe.getAwsVideoUrl(this.preSignedUrl.url, this.selectedMaterialFile);
-      this.awsVideoUrl = environment.VIDEO_DOMAIN_URL + this.selectedMaterialFile.name
+      this.awsVideoUrl = environment.AWS_DOMAIN_URL + 'material/' + this.selectedMaterialFile.name
       this.addMaterialForm.value["material"] = this.awsVideoUrl;
       this.createMaterials();
     } catch (error: any) {
