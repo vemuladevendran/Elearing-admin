@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -9,7 +10,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class VideoCardComponent implements OnInit {
   @Input() videosList: any[] = [];
   defaultThumbnailImg = "/assets/video-default-thumbnail-img.webp";
-
   constructor(
   ) { }
 

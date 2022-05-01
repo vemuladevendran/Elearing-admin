@@ -31,4 +31,12 @@ export class StudentsService {
     const url = `${this.settings.API_BASE_URL}/student/dismiss-student/${id}`;
     return lastValueFrom(this.http.delete(url))
   }
+
+  // getStudents
+  getStudents(filters: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/student`;
+    return lastValueFrom(this.http.get(url, {
+      params: filters,
+    }));
+  }
 }

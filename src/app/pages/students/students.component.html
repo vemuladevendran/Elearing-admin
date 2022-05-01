@@ -1,0 +1,18 @@
+<mat-stepper class="example-stepper">
+    <mat-step label="Students">
+        <div class="text-end">
+            <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" [routerLink]="">
+                <span class="h6 pe-1">&#43;</span> Add Student
+            </button>
+        </div>
+        <app-student-card></app-student-card>
+    </mat-step>
+    <mat-step label="Members">
+        <div class="text-end">
+            <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" [routerLink]="">
+                <span class="h6 pe-1">&#43;</span> Add Member
+            </button>
+        </div>
+        <app-member-card></app-member-card>
+    </mat-step>
+</mat-stepper>
