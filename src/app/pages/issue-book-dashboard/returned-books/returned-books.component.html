@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- filters -->
+        <!-- <div class="col-12">
+            <form class="row justify-content-end" [formGroup]="filtersForm">
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Code</mat-label>
+                        <input matInput placeholder="Title" type="text" formControlName="code" />
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Roll Number</mat-label>
+                        <input type="text" matInput placeholder="Code" formControlName="rollNumber" />
+                    </mat-form-field>
+                </div>
+            </form>
+        </div> -->
+        <div class="col-12">
+            <!-- empty list -->
+            <div class="col-12 text-center" *ngIf="booksList.length === 0">
+                <img src="/assets/no-data-found.png" class="w-100" alt="NO DATA FOUND">
+            </div>
+            <!-- book list details -->
+            <div class="col-12 table-responsive mt-3" *ngIf="booksList.length !== 0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">Book Image</th>
+                            <th scope="col" class="text-center">Issued Date</th>
+                            <th scope="col" class="text-center">Returned Date</th>
+                            <th scope="col" class="text-center">Title</th>
+                            <th scope="col" class="text-center">Access Code</th>
+                            <th scope="col" class="text-center">Student Name</th>
+                            <th scope="col" class="text-center">Roll Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center align-middle" *ngFor="let book of booksList; index as i">
+                            <td>{{i + 1}} </td>
+                            <td> <img
+                                    [src]="book.bookId?.image !== null ? book.bookId?.image.url : '/assets/book-2.webp'"
+                                    alt="Book Image" decoding="async" loading="lazy" class="book-preview-img"> </td>
+                            <td> {{book.issuedDate | date}} </td>
+                            <td> {{book.returnedDate | date}} </td>
+                            <td> {{book.bookId.title}} </td>
+                            <td> {{book.bookId.accessCode}} </td>
+                            <td> {{book.studentId.name}} </td>
+                            <td> {{book.studentId.rollNumber}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

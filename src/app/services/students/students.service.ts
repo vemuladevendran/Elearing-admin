@@ -39,4 +39,14 @@ export class StudentsService {
       params: filters,
     }));
   }
+
+  getStudentById(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/student/${id}`;
+    return lastValueFrom(this.http.get(url));
+  }
+
+  getStudentByRollNumber(rollNumber: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/student/rollNumber/${rollNumber}`;
+    return lastValueFrom(this.http.get(url));
+  }
 }

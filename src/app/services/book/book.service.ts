@@ -40,9 +40,9 @@ export class BookService {
   }
 
   // get book by Code
-  getBookByCode(code: string): Promise<any> {
-    const url = `${this.settings.API_BASE_URL}/book/code`;
-    return lastValueFrom(this.http.post(url, { code: code }));
+  getBookByCode(accessCode: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/book/access-code`;
+    return lastValueFrom(this.http.post(url, { accessCode: accessCode }));
   }
 
   // delete book
