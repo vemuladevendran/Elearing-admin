@@ -12,20 +12,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { CreateStudentComponent } from './create-student/create-student.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 const materialModules = [
   MatInputModule,
   MatFormFieldModule,
   MatIconModule,
   MatCardModule,
   MatStepperModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ]
 
 @NgModule({
   declarations: [
     StudentsComponent,
     StudentCardComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    CreateStudentComponent
   ],
   imports: [
     CommonModule,

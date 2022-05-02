@@ -49,4 +49,9 @@ export class StudentsService {
     const url = `${this.settings.API_BASE_URL}/student/rollNumber/${rollNumber}`;
     return lastValueFrom(this.http.get(url));
   }
+
+  createStudent(data: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/student/create-student`;
+    return lastValueFrom(this.http.post(url, data));
+  }
 }

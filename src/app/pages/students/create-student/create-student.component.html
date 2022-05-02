@@ -1,0 +1,61 @@
+<div class="container">
+    <form class="row" [formGroup]="createStudentForm" (ngSubmit)="createStudent()">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input email type="email" matInput formControlName="email">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput type="tel" formControlName="mobileNumber">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>DOB</mat-label>
+                    <input matInput [matDatepicker]="dp" formControlName="dob" />
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp panelClass="example-month-picker">
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div *ngIf="role === 'student'">
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Roll Number</mat-label>
+                        <input matInput formControlName="rollNumber">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Year</mat-label>
+                        <input matInput type="number" formControlName="year" min="1" max="4">
+                    </mat-form-field>
+                </div>
+            </div>
+            <!-- button section -->
+            <div class="d-flex flex-wrap justify-content-center mt-2">
+                <div>
+                    <a (click)="goBack()" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                        <span class="h6">&#10006; </span>
+                        Cancel
+                    </a>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm rounded shadow" [disabled]="createStudentForm.invalid">
+                        Create {{role}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
