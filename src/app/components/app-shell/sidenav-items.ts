@@ -6,6 +6,7 @@ export const menuItems = [
     ['peoples', 'Students', ['/students']],
     ['record_voice_over', 'Author', ['/authors']],
     ['pending_actions', 'Request Pending', ['/student-request']],
+    ['pending', 'Course Request Pending', ['/course-request']],
     ['person', 'Admin', ['/admin']],
 
 ].map(([icon, text, path]) => ({ icon, text, path }));

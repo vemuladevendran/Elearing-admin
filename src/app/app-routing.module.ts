@@ -43,6 +43,7 @@ const routes: Routes = [
       { path: 'student-request', loadChildren: () => import('./pages/pending-student-request/pending-student-request.module').then(m => m.PendingStudentRequestModule) },
       { path: 'students', loadChildren: () => import('./pages/students/students.module').then(m => m.StudentsModule) },
       { path: 'issue-book-dashboard', loadChildren: () => import('./pages/issue-book-dashboard/issue-book-dashboard.module').then(m => m.IssueBookDashboardModule) },
+      { path: 'course-request', loadChildren: () => import('./pages/pending-course-request/pending-course-request.module').then(m => m.PendingCourseRequestModule) },
     ],
   },
 ];

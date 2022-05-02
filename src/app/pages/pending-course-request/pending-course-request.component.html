@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let enrole of enroleRequest">
+            <mat-card>
+                <p>Student Name : <span>{{enrole.user?.name}}</span></p>
+                <p>Roll Number : <span>{{enrole.user?.rollNumber}}</span></p>
+                <p>Course Title : <span>{{enrole.course?.courseTitle}}</span></p>
+                <p>Course Code : <span>{{enrole.course?.code}}</span></p>
+                <p>Course Price : <span>{{enrole.course?.price}}</span></p>
+                <p>Requested Time : <span>{{enrole.createdAt | date}}</span></p>
+                <!-- accept button section -->
+                <div class="mt-3 d-flex justify-content-around">
+                    <button class="btn btn-primary py-1" (click)="approveRequest(enrole)">Accept</button>
+                    <button class="btn btn-danger py-1" (click)="rejectRequest(enrole)">Reject</button>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="col-12 text-center" *ngIf="enroleRequest.length === 0">
+        <img src="/assets/no-data-found.png" class="w-100" alt="NO DATA FOUND">
+    </div>
+</div>

@@ -37,4 +37,5 @@ export class CourseService {
     const url = `${this.settings.API_BASE_URL}/course/${id}`;
     return lastValueFrom(this.http.get(url));
   }
+
 }
