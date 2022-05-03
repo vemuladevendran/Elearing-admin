@@ -21,8 +21,6 @@ export class AddCourseMaterialComponent implements OnInit {
   courseId = '';
   fileUploadLoader = false;
   preSignedUrl: any;
-  awsVideoUrl: any;
-
 
   constructor(
     private fb: FormBuilder,
@@ -66,8 +64,7 @@ export class AddCourseMaterialComponent implements OnInit {
       this.preSignedUrl = await this.videoServe.getPreSignedUrl(data);
       this.loader.hide();
       const url = await this.videoServe.getAwsVideoUrl(this.preSignedUrl.url, this.selectedMaterialFile);
-      this.awsVideoUrl = environment.AWS_DOMAIN_URL + 'material/' + this.selectedMaterialFile.name
-      this.addMaterialForm.value["material"] = this.awsVideoUrl;
+      this.addMaterialForm.value["material"] = this.preSignedUrl;
       this.createMaterials();
     } catch (error: any) {
       console.log(error);

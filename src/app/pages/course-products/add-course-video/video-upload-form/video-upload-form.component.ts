@@ -19,7 +19,6 @@ export class VideoUploadFormComponent implements OnInit {
   selectedFile: any;
   selectedVideoFile: any;
   preSignedUrl: any;
-  awsVideoUrl: any;
   @Input() formDetails: any;
   formData = new FormData();
   processVideoLoaded = false;
@@ -71,8 +70,8 @@ export class VideoUploadFormComponent implements OnInit {
       this.loader.hide();
 
       const url = await this.videoServe.getAwsVideoUrl(this.preSignedUrl.url, this.selectedVideoFile);
-      this.awsVideoUrl = environment.AWS_DOMAIN_URL + 'video/' + this.selectedVideoFile.name
-      this.formDetails["video"] = this.awsVideoUrl;
+      console.log(this.preSignedUrl, url, 'url details');
+      this.formDetails["video"] = this.preSignedUrl;
       // uploading data to database
       this.createNewVideo();
     } catch (error: any) {

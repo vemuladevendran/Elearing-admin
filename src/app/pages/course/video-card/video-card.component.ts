@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-video-card',
@@ -10,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class VideoCardComponent implements OnInit {
   @Input() videosList: any[] = [];
   defaultThumbnailImg = "/assets/video-default-thumbnail-img.webp";
+  awsVideoUrl = environment.AWS_DOMAIN_URL;
   constructor(
   ) { }
 

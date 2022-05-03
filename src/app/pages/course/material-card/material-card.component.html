@@ -27,7 +27,7 @@
                 {{selectedPdf?.title}}
             </h2>
         </div>
-        <pdf-viewer [src]="selectedPdf?.material" [render-text]="true" [original-size]="false"
+        <pdf-viewer [src]="awsVideoUrl + selectedPdf?.material?.key" [render-text]="true" [original-size]="false"
             class="w-75 material-pdf border border-dark">
         </pdf-viewer>
     </div>

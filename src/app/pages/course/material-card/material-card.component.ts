@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-material-card',
@@ -8,6 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MaterialCardComponent implements OnInit {
   @Input() materialsList: any[] = [];
   selectedPdf: any;
+  awsVideoUrl = environment.AWS_DOMAIN_URL;
+
   constructor() { }
 
   ngOnInit(): void {
