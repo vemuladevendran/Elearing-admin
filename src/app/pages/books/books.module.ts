@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BookCardComponent } from './book-card/book-card.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatPaginatorModule} from '@angular/material/paginator'; 
 
 const materialModules = [
   MatInputModule,
@@ -23,6 +24,7 @@ const materialModules = [
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatPaginatorModule
 ]
 @NgModule({
   declarations: [

@@ -25,8 +25,8 @@
             <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform">
                 <div>
                     <div class="position-absolute top-0 start-50 translate-middle">
-                        <img [src]="'/assets/default-profile.png'" width="90" alt="student-image"
-                            class="img-fluid rounded-circle img-thumbnail shadow-md" />
+                        <img [src]="student?.image?.url ? student?.image?.url : '/assets/default-profile.png'"
+                            width="90" alt="student-image" class="img-fluid rounded-circle img-thumbnail shadow-md" />
                     </div>
                     <div class="card-body mt-4 pb-0">
                         <h3 class="card-title fw-bold mb-1 text-wrap text text-uppercase">

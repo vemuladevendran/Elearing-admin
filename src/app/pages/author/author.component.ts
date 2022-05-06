@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 })
 export class AuthorComponent implements OnInit {
   authorList: any[] = [];
+  totalCount = 0;
+  page = 1;
   constructor(
     private authorServe: AuthorService,
     private loader: LoaderService,
@@ -19,11 +21,12 @@ export class AuthorComponent implements OnInit {
 
 
   // get author list
-  async getAuthorlist(): Promise<void> {
+  async getAuthorlist(page: any): Promise<void> {
     try {
       this.loader.show();
-      const data = await this.authorServe.getAuthors();
+      const data = await this.authorServe.getAuthors(page);
       this.authorList = data.authors;
+      this.totalCount = data.count;
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to fetch Authors')
@@ -48,7 +51,7 @@ export class AuthorComponent implements OnInit {
       try {
         await this.authorServe.deleteAuthor(id);
         this.toast.success('Deleted');
-        this.getAuthorlist();
+        this.getAuthorlist(this.page);
       } catch (error) {
         console.log(error, 'fail to delete');
         this.toast.error('Fail to Delete');
@@ -56,9 +59,14 @@ export class AuthorComponent implements OnInit {
     }
   }
 
+  // handle page
+  handlePage(event: any): void {
+    this.page = event.pageIndex + 1;
+    this.getAuthorlist(this.page);
+  }
 
   ngOnInit(): void {
-    this.getAuthorlist();
+    this.getAuthorlist(this.page);
   }
 
 }

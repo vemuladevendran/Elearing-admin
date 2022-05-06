@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
-import { AuthorService } from 'src/app/services/author/author.service';
 import { BookService } from 'src/app/services/book/book.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import Swal from 'sweetalert2';
@@ -14,18 +14,19 @@ import Swal from 'sweetalert2';
 })
 export class BooksComponent implements OnInit {
   bookList: any[] = [];
-  authors: any[] = [];
-  booksCategory: any[] = [];
   filtersForm: FormGroup;
   filters: any;
   viewBookScreen = false;
   viewBookdetails: any;
+  totalCount = 0;
+  page = 1;
+
   constructor(
-    private authorServe: AuthorService,
     private toast: ToastrService,
     private loader: LoaderService,
     private fb: FormBuilder,
     private bookServe: BookService,
+    private route: ActivatedRoute,
   ) {
     this.filtersForm = this.fb.group({
       author: [''],
@@ -36,18 +37,8 @@ export class BooksComponent implements OnInit {
     this.filtersForm.valueChanges.pipe(debounceTime(800))
       .subscribe(() => {
         this.filters = this.filtersForm?.value;
-        this.getBookDetails(this.filters);
+        this.getBookDetails(this.filters, this.page);
       });
-  }
-
-  // get author list
-  async authorList(): Promise<void> {
-    try {
-      this.authors = await this.authorServe.getAuthors();
-    } catch (error) {
-      console.log(error);
-      this.toast.error('Fail to fetch authors')
-    }
   }
 
   async viewBookDetails(data: any) {
@@ -60,18 +51,25 @@ export class BooksComponent implements OnInit {
   }
 
   // get book details
-  async getBookDetails(filters: any): Promise<void> {
+  async getBookDetails(filters: any, page: any): Promise<void> {
     try {
       this.loader.show();
-      this.bookList = await this.bookServe.getBooks(filters);
-      this.viewBookdetails = this.bookList[0];
-      this.authorList();
+      const data = await this.bookServe.getBooks(filters, page)
+      this.bookList = data.data;
+      this.totalCount = data.count;
+      this.viewBookdetails = data.data[0];
     } catch (error: any) {
       this.toast.error(error.error?.message);
       console.log(error);
     } finally {
       this.loader.hide();
     }
+  }
+
+  // handle page
+  handlePage(event: any): void {
+    this.page = event.pageIndex + 1;
+    this.getBookDetails(this.filters, this.page);
   }
 
   // delete book details
@@ -90,7 +88,7 @@ export class BooksComponent implements OnInit {
       try {
         await this.bookServe.deleteBook(id);
         this.toast.success("Deleted");
-        this.getBookDetails(this.filters);
+        this.getBookDetails(this.filters, this.page);
       } catch (error: any) {
         console.log(error);
         this.toast.error(error.error?.messge);
@@ -102,7 +100,7 @@ export class BooksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getBookDetails(this.filters);
+    this.getBookDetails(this.filters, this.page);
   }
 
 }

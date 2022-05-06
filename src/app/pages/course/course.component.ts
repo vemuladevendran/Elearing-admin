@@ -38,7 +38,8 @@ export class CourseComponent implements OnInit {
   async getCourseDetails(filters: any): Promise<void> {
     try {
       this.loader.show();
-      this.courseList = await this.courseServe.getCourses(filters);
+      const data = await this.courseServe.getCourses(filters);
+      this.courseList = data.courses;
     } catch (error: any) {
       console.log(error);
       this.toast.error(error?.error.message)

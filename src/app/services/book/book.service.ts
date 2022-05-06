@@ -14,10 +14,13 @@ export class BookService {
   ) { }
 
   // get books
-  getBooks(filters?: any): Promise<any> {
+  getBooks(filters?: any, page?: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/book`;
     return lastValueFrom(this.http.get(url, {
-      params: filters,
+      params: {
+        ...filters,
+        page: page || 1
+      },
     }));
   }
 
@@ -53,7 +56,7 @@ export class BookService {
 
   // get books category
   getBooksCategory(): Promise<any> {
-    const url = `${this.settings.API_BASE_URL}/book/category`;
+    const url = `${this.settings.API_BASE_URL}/category`;
     return lastValueFrom(this.http.get(url));
   }
 

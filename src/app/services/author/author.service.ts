@@ -14,9 +14,11 @@ export class AuthorService {
   ) { }
 
   // get authors
-  getAuthors(): Promise<any> {
+  getAuthors(page?: number): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/author`;
-    return lastValueFrom(this.http.get(url));
+    return lastValueFrom(this.http.get(url, {
+      params: { page: page || 1 },
+    }));
   }
 
   // get author by id

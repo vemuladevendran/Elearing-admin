@@ -41,11 +41,11 @@
                 </div>
                 <p class="fw-bold">{{bookDetails.title}}</p>
                 <p>Author : {{bookDetails.author.authorName}}</p>
-                <p>
+                <p class="fw-bold">
                     {{bookDetails.description}}
                 </p>
                 <p> Access Code : {{bookDetails.accessCode}} </p>
-                <p> Category : {{bookDetails.category}} </p>
+                <p> Category : <span *ngFor="let c of bookDetails.category">{{c.categoryName}} </span></p>
                 <p> Price : {{bookDetails.price}} </p>
                 <p> Edition : {{bookDetails.edition}} </p>
                 <p> PublishedYear : {{bookDetails.publishedYear | date}} </p>

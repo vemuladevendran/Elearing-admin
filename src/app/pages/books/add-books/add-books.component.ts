@@ -21,7 +21,7 @@ export class AddBooksComponent implements OnInit {
   createBookForm: FormGroup;
   formData = new FormData();
   bookId = '';
-  defaultImageUrl="/assets/book-2.png";
+  defaultImageUrl = "/assets/book-2.png";
 
   constructor(
     private fb: FormBuilder,
@@ -94,7 +94,8 @@ export class AddBooksComponent implements OnInit {
   // get author list
   async authorList(): Promise<void> {
     try {
-      this.authors = await this.authorServe.getAuthors();
+      const data = await this.authorServe.getAuthors()
+      this.authors = data.authors;
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to fetch authors')

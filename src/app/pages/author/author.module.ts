@@ -8,11 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatPaginatorModule} from '@angular/material/paginator'; 
 const materialModules = [
   MatInputModule,
   MatFormFieldModule,
   MatIconModule,
+  MatPaginatorModule
 ]
 @NgModule({
   declarations: [

@@ -26,10 +26,10 @@
                         <div>
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Book Category</mat-label>
-                                <mat-select formControlName="category">
-                                    <mat-option class="text-uppercase" [value]="category"
+                                <mat-select formControlName="category" multiple>
+                                    <mat-option class="text-uppercase" [value]="category._id"
                                         *ngFor="let category of booksCategory">
-                                        {{category}}
+                                        {{category.categoryName}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
