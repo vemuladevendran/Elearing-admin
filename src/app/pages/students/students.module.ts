@@ -15,6 +15,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { CreateStudentComponent } from './create-student/create-student.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ViewStudentComponent } from './view-student/view-student.component';
 const materialModules = [
   MatInputModule,
   MatFormFieldModule,
@@ -31,7 +32,8 @@ const materialModules = [
     StudentsComponent,
     StudentCardComponent,
     MemberCardComponent,
-    CreateStudentComponent
+    CreateStudentComponent,
+    ViewStudentComponent
   ],
   imports: [
     CommonModule,

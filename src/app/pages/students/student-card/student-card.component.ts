@@ -56,7 +56,8 @@ export class StudentCardComponent implements OnInit {
   // delete student
   async deleteStudent(id: string, event: any): Promise<void> {
     try {
-
+      event.stopPropagation();
+      console.log('delete')
     } catch (error: any) {
       console.log(error);
       this.toast.error(error?.error?.message)

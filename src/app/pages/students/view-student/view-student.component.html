@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row justify-content-around align-items-center">
+        <div class="col-12 col-md-6">
+            <p> Name : <span class="fw-bold">{{studentDetails?.student?.name}}</span> </p>
+            <p> Email : <span class="fw-bold"> {{studentDetails?.student?.email}}</span> </p>
+            <p> Mobile Number : <span class="fw-bold">{{studentDetails?.student?.mobileNumber}}</span> </p>
+            <p> DOB : <span class="fw-bold">{{studentDetails?.student?.dob}}</span> </p>
+            <p> Roll Number : <span class="fw-bold">{{studentDetails?.student?.rollNumber}}</span> </p>
+        </div>
+        <!-- profile photo -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <img [src]="studentDetails?.student?.image?.url ? studentDetails?.student?.image?.url : '/assets/default-profile.png'"
+                alt="student-image" class="w-75 shadow-md" />
+        </div>
+    </div>
+    <hr>
+    <!-- course purshase -->
+    <div class="row">
+        <h2>Course Purchased</h2>
+        <div class="col-12 table-responsive mt-3">
+            <p class="text-center text-warning" *ngIf="studentDetails?.course.length ===0">No data found</p>
+            <table class="table table-hover" *ngIf="studentDetails?.course.length !==0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Course Name</th>
+                        <th scope="col" class="text-center">Course Code</th>
+                        <th scope="col" class="text-center">Course Price</th>
+                        <th scope="col" class="text-center">Purchased Date</th>
+                        <th scope="col" class="text-center">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let details of studentDetails?.course; index as i">
+                        <th scope="row" class="text-center">{{i+1}}</th>
+                        <td class="text-center">{{details.course.courseTitle}}</td>
+                        <td class="text-center">{{details.course.code}}</td>
+                        <td class="text-center">Rs :{{details.course.price}}</td>
+                        <td class="text-center">{{'22/09/2020'}}</td>
+                        <td class="text-center">{{'Active'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <!-- Book details -->
+    <div class="row">
+        <h2>Book details</h2>
+        <div class="col-12 table-responsive mt-3">
+            <p class="text-center text-warning" *ngIf="studentDetails?.books.length ===0">No data found</p>
+            <table class="table table-hover" *ngIf="studentDetails?.books.length !==0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Title</th>
+                        <th scope="col" class="text-center">Access code</th>
+                        <th scope="col" class="text-center">Issued Date</th>
+                        <th scope="col" class="text-center">Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let details of studentDetails?.books; index as i">
+                        <th scope="row" class="text-center">{{i+1}}</th>
+                        <td class="text-center">{{details?.bookId.title}}</td>
+                        <td class="text-center">{{details?.bookId.accessCode}}</td>
+                        <td class="text-center">{{details?.issuedDate | date}}</td>
+                        <td class="text-center">{{details?.dueDate | date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

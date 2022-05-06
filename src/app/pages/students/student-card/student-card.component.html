@@ -22,7 +22,8 @@
         </div>
 
         <div class="col-12 col-mg-6 col-lg-4 col-xl-3 mt-5" *ngFor="let student of studentList">
-            <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform">
+            <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform"
+                [routerLink]="['view-student/student/', student._id]">
                 <div>
                     <div class="position-absolute top-0 start-50 translate-middle">
                         <img [src]="student?.image?.url ? student?.image?.url : '/assets/default-profile.png'"
