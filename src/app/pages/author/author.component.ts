@@ -22,7 +22,8 @@ export class AuthorComponent implements OnInit {
   async getAuthorlist(): Promise<void> {
     try {
       this.loader.show();
-      this.authorList = await this.authorServe.getAuthors();
+      const data = await this.authorServe.getAuthors();
+      this.authorList = data.authors;
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to fetch Authors')

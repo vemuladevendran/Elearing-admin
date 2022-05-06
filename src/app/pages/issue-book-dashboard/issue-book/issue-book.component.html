@@ -70,7 +70,8 @@
                     </div>
                 </mat-card>
                 <mat-card class="col-12 col-md-4 py-5">
-                    <p>Category : <span class="text-primary">{{bookData.category}}</span></p>
+                    <p>Category : <span class="text-primary"
+                            *ngFor="let c of bookData.category">{{c.categoryName}} </span></p>
                     <p>Total Book Available : <span class="text-primary">{{bookData.totalBooks}}</span></p>
                     <p>Edition : <span class="text-primary">{{bookData.edition}}</span></p>
                     <p>Visitor Count : <span class="text-primary">{{bookData.visitor}}</span></p>
