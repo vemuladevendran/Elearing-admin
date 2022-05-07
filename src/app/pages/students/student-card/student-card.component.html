@@ -1,5 +1,12 @@
 <div class="container">
     <div class="row">
+        <div class="text-end mt-4">
+            <select name="view" id="view-table" (change)="viewChange($event)">
+                <option value="" selected>View By</option>
+                <option value="table">Table</option>
+                <option value="card">Card</option>
+            </select>
+        </div>
         <div class="col-12">
             <!-- filters -->
             <form class="row" [formGroup]="filtersForm">
@@ -15,46 +22,89 @@
                         <input matInput formControlName="name" type="text" />
                     </mat-form-field>
                 </div>
+                <!-- sort -->
             </form>
+
         </div>
         <div class="col-12 text-center" *ngIf="studentList.length === 0">
             <img src="/assets/no-data-found.webp" class="w-75" alt="NO DATA FOUND">
         </div>
 
-        <div class="col-12 col-mg-6 col-lg-4 col-xl-3 mt-5" *ngFor="let student of studentList">
-            <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform"
-                [routerLink]="['view-student/student/', student._id]">
-                <div>
-                    <div class="position-absolute top-0 start-50 translate-middle">
-                        <img [src]="student?.image?.url ? student?.image?.url : '/assets/default-profile.png'"
-                            width="90" alt="student-image" class="img-fluid rounded-circle img-thumbnail shadow-md" />
+        <div class="row" *ngIf="view !== 'table'">
+            <div class="col-12 col-mg-6 col-lg-4 col-xl-3 mt-5" *ngFor="let student of studentList">
+                <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform"
+                    [routerLink]="['view-student/student/', student._id]">
+                    <div>
+                        <div class="position-absolute top-0 start-50 translate-middle">
+                            <img [src]="student?.image?.url ? student?.image?.url : '/assets/default-profile.png'"
+                                width="90" alt="student-image"
+                                class="img-fluid rounded-circle img-thumbnail shadow-md" />
+                        </div>
+                        <div class="card-body mt-4 pb-0">
+                            <h3 class="card-title fw-bold mb-1 text-wrap text text-uppercase">
+                                {{student.name}}
+                            </h3>
+                            <h4 class="card-text mb-2 text-black-60 text-uppercase">{{student.rollNumber}}</h4>
+                            <p class="card-text text-muted mb-2" matTooltip="Roll No">
+                                {{student.email}}
+                            </p>
+                            <p class="card-text text-muted mb-2" matTooltip="Register No">
+                                {{student.dob | date}}
+                            </p>
+                        </div>
                     </div>
-                    <div class="card-body mt-4 pb-0">
-                        <h3 class="card-title fw-bold mb-1 text-wrap text text-uppercase">
-                            {{student.name}}
-                        </h3>
-                        <h4 class="card-text mb-2 text-black-60 text-uppercase">{{student.rollNumber}}</h4>
-                        <p class="card-text text-muted mb-2" matTooltip="Roll No">
-                            {{student.email}}
-                        </p>
-                        <p class="card-text text-muted mb-2" matTooltip="Register No">
-                            {{student.dob | date}}
-                        </p>
-                    </div>
-                </div>
 
-                <div class="card-text mb-2 d-flex justify-content-center">
-                    <div class="me-3 border rounded-circle edit icon">
-                        <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit">
-                            <a [routerLink]="['/student/edit-student/', student?._id]">create</a>
-                        </mat-icon>
-                    </div>
-                    <div class="border rounded-circle icon delete">
-                        <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete" class="cursor-pointer"
-                            (click)="deleteStudent(student?._id, $event)">delete</mat-icon>
+                    <div class="card-text mb-2 d-flex justify-content-center">
+                        <div class="me-3 border rounded-circle edit icon">
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit">
+                                <a (click)="updateStudent(student?._id, $event)" class="cursor-pointer">create</a>
+                            </mat-icon>
+                        </div>
+                        <div class="border rounded-circle icon delete">
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete" class="cursor-pointer"
+                                (click)="deleteStudent(student?._id, $event)">delete</mat-icon>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- by table view -->
+        <div class="col-12 table-responsive mt-3" *ngIf="view === 'table'">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Image</th>
+                        <th scope="col" class="text-center">Name</th>
+                        <th scope="col" class="text-center">Roll Number</th>
+                        <th scope="col" class="text-center">Email</th>
+                        <th scope="col" class="text-center">DOB</th>
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let details of studentList index as i"
+                        [routerLink]="['view-student/student/', details._id]">
+                        <th scope="row" class="text-center">{{i+1}}</th>
+                        <td> <img [src]="details?.image !== null ? details?.image.url : '/assets/default-profile.png'"
+                                alt="Book Image" decoding="async" loading="lazy" class="book-preview-img"> </td>
+                        <td class="text-center">{{details.name}}</td>
+                        <td class="text-center">{{details.rollNumber}}</td>
+                        <td class="text-center">{{details.email}}</td>
+                        <td class="text-center">{{details.dob | date}}</td>
+                        <td class="text-center">
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit" class="fs-4 me-3">
+                                <a (click)="updateStudent(details?._id, $event)">create</a>
+                            </mat-icon>
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
+                                class="cursor-pointer text-danger fs-4" (click)="deleteStudent(details?._id, $event)">
+                                delete
+                            </mat-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

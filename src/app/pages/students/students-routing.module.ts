@@ -7,6 +7,7 @@ import { ViewStudentComponent } from './view-student/view-student.component';
 const routes: Routes = [
   { path: '', component: StudentsComponent },
   { path: 'create-student/:role', component: CreateStudentComponent },
+  { path: 'update-student/:role/:id', component: CreateStudentComponent },
   { path: 'view-student/:role/:id', component: ViewStudentComponent },
 ];
 

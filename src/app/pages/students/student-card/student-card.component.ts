@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { StudentsService } from 'src/app/services/students/students.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-card',
@@ -16,11 +18,13 @@ export class StudentCardComponent implements OnInit {
   filters: any = {
     role: 'student'
   };
+  view = 'card'
   constructor(
     private toast: ToastrService,
     private loader: LoaderService,
     private studentServe: StudentsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
   ) {
     this.filtersForm = this.fb.group({
       name: [''],
@@ -39,6 +43,10 @@ export class StudentCardComponent implements OnInit {
   }
 
 
+  viewChange(event: any) {
+    this.view = event.target.value
+  }
+
   // get student list
 
   async getStudents(filters: any): Promise<void> {
@@ -55,15 +63,32 @@ export class StudentCardComponent implements OnInit {
 
   // delete student
   async deleteStudent(id: string, event: any): Promise<void> {
-    try {
-      event.stopPropagation();
-      console.log('delete')
-    } catch (error: any) {
-      console.log(error);
-      this.toast.error(error?.error?.message)
-    } finally {
-      this.loader.hide();
+    event.stopPropagation();
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await this.studentServe.deleteStudent(id);
+        this.toast.success('Deleted');
+        this.getStudents(this.filters);
+      } catch (error) {
+        console.log(error, 'fail to delete');
+        this.toast.error('Fail to Delete');
+      }
     }
+  };
+
+  updateStudent(id: string, event: any) {
+    event.stopPropagation();
+    this.router.navigate(['/students/update-student/student/', id])
   }
 
 }

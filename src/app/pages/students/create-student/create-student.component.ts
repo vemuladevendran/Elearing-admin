@@ -13,7 +13,9 @@ import { StudentsService } from 'src/app/services/students/students.service';
 })
 export class CreateStudentComponent implements OnInit {
   role: string = '';
-  createStudentForm: FormGroup
+  createStudentForm: FormGroup;
+  studentId = '';
+  studentDetails: any;
   constructor(
     private fb: FormBuilder,
     private loader: LoaderService,
@@ -28,6 +30,7 @@ export class CreateStudentComponent implements OnInit {
     if (this.role === '') {
       this.goBack();
     }
+    this.studentId = this.route.snapshot.paramMap.get('id') ?? '';
     // form initial
     this.createStudentForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -73,9 +76,28 @@ export class CreateStudentComponent implements OnInit {
     } finally {
       this.loader.hide();
     }
+  };
+
+  async getStudentDetails(): Promise<void> {
+    if (this.studentId === '') {
+      return;
+    }
+    try {
+      this.loader.show();
+      const data = await this.studentServe.getStudentById(this.studentId);
+      this.studentDetails = data?.student;
+      this.createStudentForm.patchValue(this.studentDetails);
+      console.log(data, 'student details');
+    } catch (error: any) {
+      console.log(error);
+      this.toast.error(error?.error.message);
+    } finally {
+      this.loader.hide();
+    }
   }
 
   ngOnInit(): void {
+    this.getStudentDetails();
   }
 
 }

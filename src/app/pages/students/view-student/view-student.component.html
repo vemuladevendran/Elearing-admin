@@ -5,7 +5,8 @@
             <p> Email : <span class="fw-bold"> {{studentDetails?.student?.email}}</span> </p>
             <p> Mobile Number : <span class="fw-bold">{{studentDetails?.student?.mobileNumber}}</span> </p>
             <p> DOB : <span class="fw-bold">{{studentDetails?.student?.dob}}</span> </p>
-            <p> Roll Number : <span class="fw-bold">{{studentDetails?.student?.rollNumber}}</span> </p>
+            <p *ngIf="role === 'student'"> Roll Number : <span
+                    class="fw-bold">{{studentDetails?.student?.rollNumber}}</span> </p>
         </div>
         <!-- profile photo -->
         <div class="col-12 col-md-6 col-lg-3">
@@ -45,7 +46,7 @@
     </div>
     <hr>
     <!-- Book details -->
-    <div class="row">
+    <div class="row" *ngIf="role === 'student'">
         <h2>Book details</h2>
         <div class="col-12 table-responsive mt-3">
             <p class="text-center text-warning" *ngIf="studentDetails?.books.length ===0">No data found</p>

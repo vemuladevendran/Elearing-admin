@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { StudentsService } from 'src/app/services/students/students.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-member-card',
@@ -54,13 +55,26 @@ export class MemberCardComponent implements OnInit {
 
   // delete student
   async deleteStudent(id: string, event: any): Promise<void> {
-    try {
+    event.stopPropagation();
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    });
 
-    } catch (error: any) {
-      console.log(error);
-      this.toast.error(error?.error?.message)
-    } finally {
-      this.loader.hide();
+    if (result.isConfirmed) {
+      try {
+        await this.studentServe.deleteStudent(id);
+        this.toast.success('Deleted');
+        this.getStudents(this.filters);
+      } catch (error) {
+        console.log(error, 'fail to delete');
+        this.toast.error('Fail to Delete');
+      }
     }
   }
 
