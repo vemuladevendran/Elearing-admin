@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader/loader.service';
@@ -21,7 +22,8 @@ export class MemberCardComponent implements OnInit {
     private toast: ToastrService,
     private loader: LoaderService,
     private studentServe: StudentsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
   ) {
     this.filtersForm = this.fb.group({
       name: [''],
@@ -76,6 +78,11 @@ export class MemberCardComponent implements OnInit {
         this.toast.error('Fail to Delete');
       }
     }
+  }
+
+  updateStudent(id: string, event: any) {
+    event.stopPropagation();
+    this.router.navigate(['/students/update-student/member/', id])
   }
 
 }

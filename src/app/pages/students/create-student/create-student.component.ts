@@ -34,7 +34,7 @@ export class CreateStudentComponent implements OnInit {
     // form initial
     this.createStudentForm = this.fb.group({
       name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      email: [{ value: '', disabled: this.studentId !== '' }, [Validators.required]],
       mobileNumber: ['', [Validators.required]],
       dob: ['', [Validators.required]],
       role: [this.role, [Validators.required]],
