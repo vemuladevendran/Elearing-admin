@@ -67,6 +67,12 @@ export class CreateStudentComponent implements OnInit {
   async createStudent(): Promise<void> {
     try {
       this.loader.show();
+      if (this.studentId !== "") {
+        await this.studentServe.updateStudent(this.studentId, this.createStudentForm.value);
+        this.toast.success("Updated");
+        this.goBack();
+        return;
+      }
       await this.studentServe.createStudent(this.createStudentForm.value);
       this.toast.success("Created");
       this.goBack();
