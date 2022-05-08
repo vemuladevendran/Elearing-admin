@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
@@ -11,30 +12,29 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 })
 export class DashboardComponent implements OnInit {
   dashBoardCount: any[] = [];
-  progressBarWith: any[] = [];
-  youtubeForm: FormGroup;
-  youtubeLinkDetails: any;
-  youtubeLink: SafeResourceUrl | string = '';
   constructor(
     private dashboardServe: DashboardService,
     private loader: LoaderService,
-    private fb: FormBuilder,
-    private sanitizer: DomSanitizer,
+    private toast: ToastrService,
   ) {
-    this.youtubeForm = this.fb.group({
-      videoTitle: ['', [Validators.required]],
-      videoLink: ['', [Validators.required]],
-      preferredYear: ['', [Validators.required]],
-    })
+
   }
 
 
   async getDashboardCount(): Promise<void> {
-   
+    try {
+      this.loader.show();
+      this.dashBoardCount = await this.dashboardServe.getDashboardCount();
+    } catch (error: any) {
+      console.log(error);
+      this.toast.error(error?.error?.message);
+    } finally {
+      this.loader.hide();
+    }
   }
 
   ngOnInit(): void {
-   
+    this.getDashboardCount();
   }
 
 }
