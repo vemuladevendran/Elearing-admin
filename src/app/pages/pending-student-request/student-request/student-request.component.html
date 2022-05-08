@@ -1,6 +1,11 @@
 <div class="container">
     <div class="row">
-        <h2 class="text-info">Pending student requests</h2>
+        <div class="d-flex justify-content-between">
+            <h2 class="text-info">Pending student requests</h2>
+            <p class="d-flex align-items-cemter cursor-pointer" (click)="getPendingRequest()"><span class="mt-1">Refresh</span>
+                <mat-icon>refresh</mat-icon>
+            </p>
+        </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1" *ngFor="let s of students; index as i">
             <mat-card>
                 <!-- empty list -->

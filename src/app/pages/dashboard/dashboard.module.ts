@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { CountCardComponent } from './count-card/count-card.component';
 const materialModules = [
   MatInputModule,
   MatFormFieldModule,
@@ -22,7 +23,8 @@ const materialModules = [
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    CountCardComponent
   ],
   imports: [
     CommonModule,
