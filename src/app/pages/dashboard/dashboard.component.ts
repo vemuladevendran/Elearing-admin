@@ -4,6 +4,7 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { OrdersService } from 'src/app/services/orders/orders.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +13,12 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 })
 export class DashboardComponent implements OnInit {
   dashBoardCount: any[] = [];
+  orderDetails: any[] = []
   constructor(
     private dashboardServe: DashboardService,
     private loader: LoaderService,
     private toast: ToastrService,
+    private orderServe: OrdersService,
   ) {
 
   }
@@ -31,10 +34,30 @@ export class DashboardComponent implements OnInit {
     } finally {
       this.loader.hide();
     }
+  };
+
+  async getOrderList(): Promise<void> {
+    try {
+      this.loader.show();
+      while (true) {
+        this.orderDetails = await this.orderServe.getOrders();
+        await this.delay(500000);
+      }
+    } catch (error: any) {
+      console.log(error);
+      this.toast.error(error?.error?.message);
+    } finally {
+      this.loader.hide();
+    }
+  };
+
+  delay(ms: number): Promise<any> {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   ngOnInit(): void {
     this.getDashboardCount();
+    this.getOrderList();
   }
 
 }
