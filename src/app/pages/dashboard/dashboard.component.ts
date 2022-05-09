@@ -38,16 +38,14 @@ export class DashboardComponent implements OnInit {
 
   async getOrderList(): Promise<void> {
     try {
-      this.loader.show();
       while (true) {
-        this.orderDetails = await this.orderServe.getOrders();
+        const data = await this.orderServe.getOrders();
+        this.orderDetails = data.data;
         await this.delay(500000);
       }
     } catch (error: any) {
       console.log(error);
       this.toast.error(error?.error?.message);
-    } finally {
-      this.loader.hide();
     }
   };
 

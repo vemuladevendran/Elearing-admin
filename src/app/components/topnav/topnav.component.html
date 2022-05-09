@@ -9,14 +9,14 @@
     </div>
     <div class="d-flex align-items-center">
         <!-- live time -->
-        <span class="fs-6">
+        <span class="d-none d-sm-inline-block fs-6">
             {{timeDate | date:'MM/dd/yyyy h:mm:ss'}}
         </span>
         <!-- Account Dropdown Menu : starts-->
         <button mat-button [matMenuTriggerFor]="menu" aria-label="Account" *ngIf="isLoggedIn">
             <mat-icon>account_circle</mat-icon>
-            <b class="d-none d-sm-inline-block pl-1">{{userName}}</b>
-            <mat-icon class="d-none d-sm-inline-block">arrow_drop_down</mat-icon>
+            <b class="pl-1">{{userName}}</b>
+            <mat-icon>arrow_drop_down</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
             <!-- <button mat-menu-item>

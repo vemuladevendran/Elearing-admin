@@ -13,10 +13,13 @@ export class OrdersService {
   ) { }
 
   // get orders
-  getOrders(filters?: any): Promise<any> {
+  getOrders(filters?: any, page?: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/order`;
     return lastValueFrom(this.http.get(url, {
-      params: filters,
+      params: {
+        ...filters,
+        page: page || 1
+      },
     }));
   }
 }

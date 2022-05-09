@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2>Orders</h2>
+        <div class="col-12 col-md-5 col-lg-3">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Status</mat-label>
+                <mat-select (selectionChange)="handleStatusChange($event)">
+                    <mat-option value="">All</mat-option>
+                    <mat-option value="paid">Paid</mat-option>
+                    <mat-option value="cancelled">Cancelled</mat-option>
+                    <mat-option value="pending">Pending</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-12">
+            Note: The orders are refreshed automatically every 5 minutes
+        </div>
+        <!-- empty list -->
+        <div class="col-12 text-center" *ngIf="orderDetails.length === 0">
+            <img src="/assets/no-data-found.webp" class="w-75 h-75" alt="NO DATA FOUND">
+        </div>
+        <div class="col-12 table-responsive mt-3" *ngIf="orderDetails.length !== 0">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-white" style="background-color: #007db3;">
+                        <th scope="col">#</th>
+                        <th scope="col">Date & Time</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" class="text-center">View Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orderDetails; let i = index">
+                        <td>{{ i+1 }}</td>
+                        <th scope="row">{{ order.createdAt | date:'medium'}}</th>
+                        <td>{{ order.course.courseTitle }}</td>
+                        <td>{{ order.user.name }}</td>
+                        <td>{{ order.course.price | currency:'INR' }}</td>
+                        <td>{{ order.status }}</td>
+                        <td class="text-center">
+                            <a [routerLink]="['/orders', order?._id]" class="btn border-primary text-primary">View</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <mat-paginator [length]="totalCount" [pageSize]="10" (page)="handlePage($event)" aria-label="Select page">
+            </mat-paginator>
+        </div>
+    </div>
+</div>
