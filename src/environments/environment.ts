@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   API_HOST: 'http://localhost:3001',
-  // API_HOST: 'https://e-library-api.herokuapp.com',
+  // API_HOST: 'https://sleepy-cove-93213.herokuapp.com/api/v2',
+
   API_BASE: '/api/v2',
   AWS_DOMAIN_URL: 'https://library243.s3.ap-south-1.amazonaws.com/'
 };
