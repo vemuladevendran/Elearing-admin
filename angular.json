@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "elibrary-admin": {
+    "elearing-admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/elibrary-admin",
+            "outputPath": "dist/elearing-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -37,7 +37,7 @@
               "src/styles.scss"
             ],
             "scripts": ["node_modules/share-api-polyfill/dist/share-min.js"],
-            "serviceWorker": true,
+            "serviceWorker": false,
             "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "elibrary-admin:build:production"
+              "browserTarget": "elearing-admin:build:production"
             },
             "development": {
-              "browserTarget": "elibrary-admin:build:development"
+              "browserTarget": "elearing-admin:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "elibrary-admin:build"
+            "browserTarget": "elearing-admin:build"
           }
         },
         "test": {
@@ -114,5 +114,5 @@
       }
     }
   },
-  "defaultProject": "elibrary-admin"
+  "defaultProject": "elearing-admin"
 }

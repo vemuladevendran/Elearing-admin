@@ -1,6 +1,6 @@
 {
-  "name": "elibrary-admin",
-  "short_name": "elibrary",
+  "name": "elearing-admin",
+  "short_name": "elearing",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

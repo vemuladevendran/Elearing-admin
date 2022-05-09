@@ -32,21 +32,23 @@
         </div>
 
         <!-- course List -->
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3 my-2" *ngFor="let course of courseList">
-            <mat-card class="d-flex align-items-center cursor-pointer" (click)="viewCourse(course._id)">
-                <div class="border border-dark">
-                    <img [src]="course?.image?.url ? course?.image?.url : defaultThumbnailImg" alt="Course Thumbnail"
-                        class="course-thumbnail-img" decoding="async" loading="lazy">
-                </div>
-                <div class="mx-2 d-flex flex-column w-100">
-                    <p class="text-uppercase fw-bold"> {{course.courseTitle}} </p>
-                    <p class="text-end">
-                        <mat-icon title="edit details" class="text-primary cursor-pointer"
-                            (click)="editCourse($event, course._id)">edit
-                        </mat-icon>
-                    </p>
-                </div>
-            </mat-card>
+        <div class="d-flex flex-wrap">
+            <div class="m-1" *ngFor="let course of courseList">
+                <mat-card class="d-flex align-items-center cursor-pointer course-card" (click)="viewCourse(course._id)">
+                    <div class="border border-dark">
+                        <img [src]="course?.image?.url ? course?.image?.url : defaultThumbnailImg"
+                            alt="Course Thumbnail" class="course-thumbnail-img" decoding="async" loading="lazy">
+                    </div>
+                    <div class="mx-2 overflow-hidden">
+                        <p class="text-uppercase fw-bold title-text"> {{course.courseTitle}} </p>
+                        <p class="">
+                            <mat-icon title="edit details" class="text-primary cursor-pointer"
+                                (click)="editCourse($event, course._id)">edit
+                            </mat-icon>
+                        </p>
+                    </div>
+                </mat-card>
+            </div>
         </div>
     </div>
 </div>

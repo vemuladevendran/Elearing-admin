@@ -26,9 +26,9 @@
                     <tr *ngFor="let order of orderDetails; let i = index">
                         <th scope="row">{{ order.createdAt | date:'medium'}}</th>
                         <td>{{ order.course.courseTitle }}</td>
-                        <td>{{ order.user.name | titlecase }}</td>
+                        <td>{{ order.user.name }}</td>
                         <td>{{ order.course.price | currency:'INR' }}</td>
-                        <td>{{ order.status | titlecase}}</td>
+                        <td>{{ order.status }}</td>
                         <td>
                             <a [routerLink]="['/orders', order?._id]" mat-stroked-button color="primary">View</a>
                         </td>
