@@ -1,30 +1,30 @@
 <div class="container">
     <h2>Order Details</h2>
-    <div class="row">
+    <div class="row" *ngIf="details !== undefined">
         <div class="col-12 col-md-5">
             <div class="row mt-3">
                 <div class="col-4">Order ID </div>
-                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+                <div class="col-8"><span class="me-3">:</span> {{''}}</div>
             </div>
             <div class="row mt-3">
                 <div class="col-4">Date & Time </div>
-                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+                <div class="col-8"><span class="me-3">:</span> {{details.createdAt | date:'medium'}}</div>
             </div>
             <div class="row mt-3">
                 <div class="col-4">User Name </div>
-                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+                <div class="col-8"><span class="me-3">:</span> {{details.user.name}}</div>
             </div>
             <div class="row mt-3">
                 <div class="col-4">Email ID </div>
-                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+                <div class="col-8"><span class="me-3">:</span> {{details.user.email}}</div>
             </div>
             <div class="row mt-3">
                 <div class="col-4">Payment Status </div>
-                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+                <div class="col-8"><span class="me-3">:</span> {{details.status}}</div>
             </div>
             <div class="row mt-3">
                 <div class="col-4">Payment ID </div>
-                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+                <div class="col-8"><span class="me-3">:</span> {{''}}</div>
             </div>
         </div>
         <div class="col-12 col-md-5 mt-4 mt-md-0">
@@ -32,19 +32,19 @@
                 <h2>Product Details</h2>
                 <div class="row mt-3">
                     <div class="col-4">Course </div>
-                    <div class="col-8"><span class="me-3">:</span> {{'Test Course'}}</div>
+                    <div class="col-8"><span class="me-3">:</span> {{details.course.courseTitle}}</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-4">Course Code </div>
-                    <div class="col-8"><span class="me-3">:</span> {{'3873'}}</div>
+                    <div class="col-8"><span class="me-3">:</span> {{details.course.code}}</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-4">Price</div>
-                    <div class="col-8"><span class="me-3">:</span> {{'873'}}</div>
+                    <div class="col-8"><span class="me-3">:</span> {{details.total | currency:'INR'}}</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-4">Status</div>
-                    <div class="col-8"><span class="me-3">:</span> {{'Paid'}}</div>
+                    <div class="col-8"><span class="me-3">:</span> {{details.status}}</div>
                 </div>
             </div>
             <!-- change status -->
@@ -55,7 +55,7 @@
                 <div class="col-12 col-md-6">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Status</mat-label>
-                        <mat-select>
+                        <mat-select [value]="orderStatus" (selectionChange)="handleStatusChange($event)">
                             <mat-option value="paid">Paid</mat-option>
                             <mat-option value="cancelled">Cancelled</mat-option>
                             <mat-option value="pending">Pending</mat-option>
@@ -64,7 +64,8 @@
                 </div>
 
                 <div class="col-12 col-md-6">
-                    <button class="btn btn-primary mt-md-2">Update</button>
+                    <button class="btn btn-primary mt-md-2" [disabled]="btnStatus"
+                        (click)="updateStatus(details._id)">Update</button>
                 </div>
             </div>
         </div>

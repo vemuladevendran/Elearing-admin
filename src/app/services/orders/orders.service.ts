@@ -22,4 +22,15 @@ export class OrdersService {
       },
     }));
   }
+
+  getOrderById(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/order/${id}`;
+    return lastValueFrom(this.http.get(url));
+  }
+
+  // update order status
+  updateOrderStatus(data: any, id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/order/${id}`;
+    return lastValueFrom(this.http.put(url, data));
+  }
 }
