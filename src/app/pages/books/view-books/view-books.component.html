@@ -40,7 +40,9 @@
                     </p>
                 </div>
                 <p class="fw-bold">{{bookDetails.title}}</p>
-                <p>Author : {{bookDetails.author.authorName}}</p>
+                <p>Author : <a
+                        [routerLink]="['/authors/edit-author/',bookDetails.author.id]">{{bookDetails.author.authorName}}</a>
+                </p>
                 <p class="fw-bold">
                     {{bookDetails.description}}
                 </p>

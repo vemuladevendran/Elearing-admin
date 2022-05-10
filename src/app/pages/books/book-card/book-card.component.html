@@ -13,7 +13,7 @@
                         <p> Book | {{book.publishedYear | date}} </p>
                         <p class="fw-bold">{{book.title}}</p>
                         <p>Access Code : <span class="fw-bold">{{book.accessCode}}</span></p>
-                        <p>Author : {{book.author.authorName}}</p>
+                        <p>Author : <a [routerLink]="['/authors/edit-author/',book.author.id]">{{book.author.authorName}}</a></p>
                         <div class="d-flex justify-content-between">
                             <div>
                                 <mat-icon title="Delete" class="text-danger cursor-pointer me-3"
