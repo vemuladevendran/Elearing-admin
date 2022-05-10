@@ -87,8 +87,8 @@
                     <tr *ngFor="let details of studentList index as i"
                         [routerLink]="['view-student/student/', details._id]">
                         <th scope="row" class="text-center">{{i+1}}</th>
-                        <td> <img [src]="details?.image !== null ? details?.image.url : '/assets/default-profile.png'"
-                                alt="Book Image" decoding="async" loading="lazy" class="book-preview-img"> </td>
+                        <td class="text-center"> <img [src]="details?.image !== null ? details?.image.url : '/assets/default-profile.png'"
+                                alt="Student Profile" decoding="async" loading="lazy" class="book-preview-img"> </td>
                         <td class="text-center">{{details.name}}</td>
                         <td class="text-center">{{details.rollNumber}}</td>
                         <td class="text-center">{{details.email}}</td>

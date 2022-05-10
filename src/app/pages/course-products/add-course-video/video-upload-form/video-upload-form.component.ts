@@ -68,10 +68,12 @@ export class VideoUploadFormComponent implements OnInit {
       this.loader.show();
       this.preSignedUrl = await this.videoServe.getPreSignedUrl(data);
       this.loader.hide();
-
       const url = await this.videoServe.getAwsVideoUrl(this.preSignedUrl.url, this.selectedVideoFile);
-      console.log(this.preSignedUrl, url, 'url details');
-      this.formDetails["video"] = this.preSignedUrl;
+      const videoUrl = {
+        key: this.preSignedUrl.key,
+        url: environment.AWS_DOMAIN_URL + this.preSignedUrl.key
+      }
+      this.formDetails["video"] = videoUrl;
       // uploading data to database
       this.createNewVideo();
     } catch (error: any) {

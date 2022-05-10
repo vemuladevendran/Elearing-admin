@@ -45,6 +45,7 @@ const routes: Routes = [
       { path: 'issue-book-dashboard', loadChildren: () => import('./pages/issue-book-dashboard/issue-book-dashboard.module').then(m => m.IssueBookDashboardModule) },
       { path: 'course-request', loadChildren: () => import('./pages/pending-course-request/pending-course-request.module').then(m => m.PendingCourseRequestModule) },
       { path: 'orders', loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersModule) },
+      { path: 'category', loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryModule) },
       {
         path: '**',
         redirectTo: '/dashboard',
