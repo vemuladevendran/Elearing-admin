@@ -5,7 +5,7 @@ import { ViewOrderComponent } from './view-order/view-order.component';
 
 const routes: Routes = [
   { path: '', component: OrdersComponent },
-  { path: 'view-order/:id', component: ViewOrderComponent },
+  { path: ':id', component: ViewOrderComponent },
 ];
 
 @NgModule({

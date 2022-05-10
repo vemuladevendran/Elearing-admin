@@ -1,1 +1,72 @@
-<p>view-order works!</p>
+<div class="container">
+    <h2>Order Details</h2>
+    <div class="row">
+        <div class="col-12 col-md-5">
+            <div class="row mt-3">
+                <div class="col-4">Order ID </div>
+                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">Date & Time </div>
+                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">User Name </div>
+                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">Email ID </div>
+                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">Payment Status </div>
+                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">Payment ID </div>
+                <div class="col-8"><span class="me-3">:</span> {{'2387824738748378'}}</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-5 mt-4 mt-md-0">
+            <div class="border product-card py-4 px-2 p-md-4" style="border-radius: 1em;">
+                <h2>Product Details</h2>
+                <div class="row mt-3">
+                    <div class="col-4">Course </div>
+                    <div class="col-8"><span class="me-3">:</span> {{'Test Course'}}</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-4">Course Code </div>
+                    <div class="col-8"><span class="me-3">:</span> {{'3873'}}</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-4">Price</div>
+                    <div class="col-8"><span class="me-3">:</span> {{'873'}}</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-4">Status</div>
+                    <div class="col-8"><span class="me-3">:</span> {{'Paid'}}</div>
+                </div>
+            </div>
+            <!-- change status -->
+            <div class="row mt-3 py-4 px-2 p-md-4">
+                <div class="col-12 fs-6">
+                    Change Status
+                </div>
+                <div class="col-12 col-md-6">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Status</mat-label>
+                        <mat-select>
+                            <mat-option value="paid">Paid</mat-option>
+                            <mat-option value="cancelled">Cancelled</mat-option>
+                            <mat-option value="pending">Pending</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <button class="btn btn-primary mt-md-2">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
