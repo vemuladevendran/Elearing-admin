@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ViewOrderComponent } from './view-order/view-order.component';
 const materialModules = [
   MatInputModule,
   MatFormFieldModule,
@@ -19,7 +20,8 @@ const materialModules = [
 
 @NgModule({
   declarations: [
-    OrdersComponent
+    OrdersComponent,
+    ViewOrderComponent
   ],
   imports: [
     CommonModule,

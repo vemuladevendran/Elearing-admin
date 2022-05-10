@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OrdersComponent } from './orders.component';
+import { ViewOrderComponent } from './view-order/view-order.component';
 
-const routes: Routes = [{ path: '', component: OrdersComponent }];
+const routes: Routes = [
+  { path: '', component: OrdersComponent },
+  { path: 'view-order/:id', component: ViewOrderComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
