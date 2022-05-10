@@ -32,7 +32,7 @@
         </div>
 
         <!-- course List -->
-        <div class="d-flex flex-wrap justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start">
             <div class="m-1" *ngFor="let course of courseList">
                 <mat-card class="d-flex align-items-center cursor-pointer course-card" (click)="viewCourse(course._id)">
                     <div class="border border-dark">
@@ -49,6 +49,11 @@
                     </div>
                 </mat-card>
             </div>
+        </div>
+        <!-- pagenation -->
+        <div class="col-12">
+            <mat-paginator [length]="totalCount" [pageSize]="10" (page)="handlePage($event)" aria-label="Select page">
+            </mat-paginator>
         </div>
     </div>
 </div>

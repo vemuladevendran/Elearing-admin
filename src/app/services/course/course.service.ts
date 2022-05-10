@@ -25,10 +25,13 @@ export class CourseService {
   }
 
   // get course details
-  getCourses(filters?: any): Promise<any> {
+  getCourses(filters?: any, page?: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/course`;
     return lastValueFrom(this.http.get(url, {
-      params: filters,
+      params: {
+        ...filters,
+        page: page || 1
+      },
     }));
   }
 

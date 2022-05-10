@@ -16,6 +16,8 @@ export class CourseComponent implements OnInit {
   courseList: any[] = [];
   filtersForm: FormGroup;
   filters: any;
+  totalCount = 0;
+  page = 1;
 
   constructor(
     private loader: LoaderService,
@@ -31,21 +33,28 @@ export class CourseComponent implements OnInit {
     this.filtersForm.valueChanges.pipe(debounceTime(800))
       .subscribe(() => {
         this.filters = this.filtersForm?.value;
-        this.getCourseDetails(this.filters);
+        this.getCourseDetails(this.filters, this.page);
       });
   }
 
-  async getCourseDetails(filters: any): Promise<void> {
+  async getCourseDetails(filters: any, page: any): Promise<void> {
     try {
       this.loader.show();
-      const data = await this.courseServe.getCourses(filters);
+      const data = await this.courseServe.getCourses(filters, page);
       this.courseList = data.courses;
+      this.totalCount = data.count;
     } catch (error: any) {
       console.log(error);
       this.toast.error(error?.error.message)
     } finally {
       this.loader.hide();
     }
+  }
+
+  // handle page
+  handlePage(event: any): void {
+    this.page = event.pageIndex + 1;
+    this.getCourseDetails(this.filters, this.page);
   }
 
   // view course details
@@ -59,7 +68,7 @@ export class CourseComponent implements OnInit {
     this.router.navigate(['/course/edit-course/', id])
   }
   ngOnInit(): void {
-    this.getCourseDetails(this.filters);
+    this.getCourseDetails(this.filters, this.page);
   }
 
 }

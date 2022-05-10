@@ -15,6 +15,7 @@ import { ViewCourseComponent } from './view-course/view-course.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { MaterialCardComponent } from './material-card/material-card.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const materialModules = [
   MatInputModule,
@@ -22,7 +23,8 @@ const materialModules = [
   MatIconModule,
   MatCardModule,
   MatStepperModule,
-  MatSelectModule
+  MatSelectModule,
+  MatPaginatorModule
 ]
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { BookService } from 'src/app/services/book/book.service';
@@ -19,7 +19,7 @@ export class BooksComponent implements OnInit {
   viewBookScreen = false;
   viewBookdetails: any;
   totalCount = 0;
-  page = 1;
+  page: any = 1;
 
   constructor(
     private toast: ToastrService,
@@ -27,6 +27,7 @@ export class BooksComponent implements OnInit {
     private fb: FormBuilder,
     private bookServe: BookService,
     private route: ActivatedRoute,
+    private router: Router
   ) {
     this.filtersForm = this.fb.group({
       author: [''],
@@ -39,6 +40,7 @@ export class BooksComponent implements OnInit {
         this.filters = this.filtersForm?.value;
         this.getBookDetails(this.filters, this.page);
       });
+    this.page = this.route.snapshot.queryParamMap.get('page') ?? 1;
   }
 
   async viewBookDetails(data: any) {
@@ -69,6 +71,12 @@ export class BooksComponent implements OnInit {
   // handle page
   handlePage(event: any): void {
     this.page = event.pageIndex + 1;
+    this.router.navigate([], {
+      queryParams: {
+        page: this.page,
+      }
+    }
+    )
     this.getBookDetails(this.filters, this.page);
   }
 
