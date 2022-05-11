@@ -7,18 +7,27 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    // background-color: #f8fafb;
     background-color: #f8fafc;
+}
+
+.sidenav-navlink-text,
+mat-icon {
+    color: #732cdf !important;
+}
+
+.mat-list-base .mat-list-item {
+    width: auto !important;
 }
 
 /* Activated Route Nav Styles */
 
 .mat-list-item.active-link {
-    // background-color: #dc3546;
-    background-color: #dff5ff;
+    background-color: #732cdf;
+    margin: 0 15px;
+    border-radius: 5px 20px 20px 5px;
     .sidenav-navlink-text,
     mat-icon {
-        color: #037eb3 !important;
+        color: white !important;
     }
 }
 
@@ -41,8 +50,7 @@
 
 #side-nav {
     min-width: 20vw;
-    // background-color: #353a40;
-    background-color: #cfffff;
+    background-color: white;
 }
 
 /* for small screens */
