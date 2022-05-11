@@ -43,6 +43,8 @@ export class ViewOrderComponent implements OnInit {
       this.loader.show();
       const status = {
         status: this.orderStatus,
+        courseId: this.details.course._id,
+        userId: this.details.user._id,
       }
       await this.orderServe.updateOrderStatus(status, id);
       this.toast.info("Status Updated");
