@@ -1,0 +1,17 @@
+<div class="shadow">
+    <video class="w-100 video-player" controls id="video" [src]="[awsVideoUrl + currentVideoDetails?.video?.key]"
+        type="video/mp4">
+    </video>
+    <div>
+        <mat-card>
+            <span class="fw-bold">
+                Description:
+            </span>
+            <p>
+                {{currentVideoDetails.description}}
+            </p>
+            <p>Title: {{currentVideoDetails.title}}</p>
+            <p>Duration: {{currentVideoDetails.videoDuration}} minutes</p>
+        </mat-card>
+    </div>
+</div>

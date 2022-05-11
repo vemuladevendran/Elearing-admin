@@ -1,0 +1,13 @@
+.title-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.material-count {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    background-color: #3f51b5;
+    color: #fff;
+}

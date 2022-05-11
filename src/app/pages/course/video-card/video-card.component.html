@@ -1,6 +1,38 @@
-<div class="container py-1 h-100" style="background-color: #f2fcfe;">
+<div class="container py-1 h-100 mt-4" style="background-color: #f2fcfe;">
     <div class="row h-100">
-        <app-card [videosList]="videosList"></app-card>
+        <!-- <app-card [videosList]="videosList"></app-card> -->
+    </div>
+    <!-- new video section -->
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-7">
+            <div class="row">
+                <div class="col-12 col-lg-6 mt-2" *ngFor="let video of videosList; index as i">
+                    <mat-card class="d-flex justify-content-between">
+                        <div class="title-text text-capitalize d-flex align-items-center">
+                            <p class="material-count m-0 d-flex justify-content-center align-items-center me-2">
+                                <span>{{i +
+                                    1}}</span>
+                            </p>{{video?.title}}
+                        </div>
+                        <div class="d-flex">
+                            <a>
+                                <mat-icon title="Play Video" class="text-dark cursor-pointer me-3"
+                                    (click)="playSelectedVideo(video)">
+                                    play_circle</mat-icon>
+                            </a>
+                            <mat-icon title="Delete" class="text-danger cursor-pointer me-3">delete </mat-icon>
+                            <!-- <mat-icon title="edit details" class="text-primary cursor-pointer">edit </mat-icon> -->
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <!-- video player -->
+        <div class="col-12 col-md-6 col-lg-5 mt-5 mt-md-0 p-md-2">
+            <div class="rounded w-100" *ngIf="currentVideoDetails !== undefined">
+                <app-video-player [currentVideoDetails]="currentVideoDetails"></app-video-player>
+            </div>
+        </div>
     </div>
 </div>
 
