@@ -1,0 +1,28 @@
+.video-thumbnail-img {
+    max-height: 210px !important;
+    min-height: 210px !important;
+}
+
+
+.title-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.description-container {
+    display: none;
+}
+
+.video-details:hover {
+    .description-container {
+        border: 1px solid black;
+        top: 0;
+        right: 0;
+        left: 60%;
+        display: block;
+        z-index: 5;
+        width: 100%;
+    }
+}

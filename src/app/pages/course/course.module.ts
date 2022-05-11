@@ -16,6 +16,7 @@ import { VideoCardComponent } from './video-card/video-card.component';
 import { MaterialCardComponent } from './material-card/material-card.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CardComponent } from './video-card/card/card.component';
 
 const materialModules = [
   MatInputModule,
@@ -34,6 +35,7 @@ const materialModules = [
     ViewCourseComponent,
     VideoCardComponent,
     MaterialCardComponent,
+    CardComponent,
   ],
   imports: [
     CommonModule,
