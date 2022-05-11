@@ -41,4 +41,9 @@ export class EnroleCourseService {
       },
     }));
   }
+
+  getStudentsByCourseID(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/enrol-course/access/${id}`;
+    return lastValueFrom(this.http.get(url))
+  };
 }

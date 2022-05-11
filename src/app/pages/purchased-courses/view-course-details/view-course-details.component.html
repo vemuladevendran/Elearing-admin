@@ -1,0 +1,59 @@
+<div class="container">
+    <h2>Purchased Course Details</h2>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="row mt-3">
+                <div class="col-6">Course Name</div>
+                <div class="col-6">: {{courseDetails?.courseTitle}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">Course Code</div>
+                <div class="col-6">: {{courseDetails?.code}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">Price</div>
+                <div class="col-6">: {{courseDetails?.price}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">Description</div>
+                <div class="col-6">: {{courseDetails?.description}}</div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">Total number of members buyed this course</div>
+                <div class="col-6 fw-bold">: {{studentsDetails.length}}</div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h2>Purchased Student Details</h2>
+    <div class="col-12 table-responsive mt-3">
+        <table class="table table-hover" *ngIf="studentsDetails.length !== 0">
+            <thead>
+                <tr class="text-white" style="background-color: #007db3;">
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col" class="text-center">View Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of studentsDetails; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <th> <img [src]="s?.user?.image?.url ? s?.user?.image?.url : defaultThumbnailImg"
+                            alt="Student Image" decoding="async" loading="lazy" class="book-preview-img">
+                    </th>
+                    <td>{{ s?.user?.name }}</td>
+                    <td>{{ s?.user?.email }}</td>
+                    <td>{{ s?.user?.role }}</td>
+                    <td class="text-center">
+                        <a [routerLink]="['/students/view-student/',s?.user?.role,s?.user?._id ]"
+                            class="btn text-primary">View
+                            Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

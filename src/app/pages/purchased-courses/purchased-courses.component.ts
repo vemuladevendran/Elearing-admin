@@ -25,7 +25,20 @@ export class PurchasedCoursesComponent implements OnInit {
     try {
       this.loader.show();
       const data = await this.enroleCourseServe.getEnroleCourses(filters, page);
-      this.courseDetails = data.data;
+      const item = data.data;
+      // removong duplicates
+      const details = item.reduce((value: any, current: any) => {
+        if (
+          !value.some(
+            (item: any) => item.course._id === current.course._id
+          )
+        ) {
+          value.push(current);
+        }
+        return value;
+      }, []);
+
+      this.courseDetails = details;
       this.totalCount = data.count;
     } catch (error: any) {
       console.log(error);

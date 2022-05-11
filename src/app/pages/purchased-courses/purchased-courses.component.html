@@ -23,7 +23,7 @@
                         <td>{{ course.course.code }}</td>
                         <td>{{ course.course.price | currency:'INR' }}</td>
                         <td class="text-center">
-                            <a [routerLink]="['/purchased-courses', course?.course._id]" class="btn text-primary">View
+                            <a [routerLink]="[course?.course._id]" class="btn text-primary">View
                                 Details</a>
                         </td>
                     </tr>
