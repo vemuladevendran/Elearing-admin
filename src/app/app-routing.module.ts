@@ -46,6 +46,8 @@ const routes: Routes = [
       { path: 'course-request', loadChildren: () => import('./pages/pending-course-request/pending-course-request.module').then(m => m.PendingCourseRequestModule) },
       { path: 'orders', loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersModule) },
       { path: 'category', loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryModule) },
+      { path: 'purchased-courses', loadChildren: () => import('./pages/purchased-courses/purchased-courses.module').then(m => m.PurchasedCoursesModule) },
+
       {
         path: '**',
         redirectTo: '/dashboard',

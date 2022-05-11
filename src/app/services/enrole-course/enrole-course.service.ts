@@ -30,4 +30,15 @@ export class EnroleCourseService {
     const url = `${this.settings.API_BASE_URL}/enrol-course/reject`;
     return lastValueFrom(this.http.post(url, data));
   }
+
+  // get enrole courses
+  getEnroleCourses(filters: any, page: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/enrol-course/access`;
+    return lastValueFrom(this.http.get(url, {
+      params: {
+        ...filters,
+        page: page || 1
+      },
+    }));
+  }
 }

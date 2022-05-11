@@ -3,6 +3,7 @@ export const menuItems = [
     ['auto_stories', 'Course', ['/course']],
     ['library_books', 'Books', ['/books']],
     ['shopping_cart', 'Orders', ['/orders']],
+    ['shop_two', 'Purchased Courses', ['/purchased-courses']],
     ['dvr', 'Issue Book', ['/issue-book-dashboard']],
     ['peoples', 'Students', ['/students']],
     ['category', 'Category', ['/category']],

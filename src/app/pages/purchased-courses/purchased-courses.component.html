@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 table-responsive mt-3">
+            <table class="table table-hover" *ngIf="courseDetails.length !== 0">
+                <thead>
+                    <tr class="text-white" style="background-color: #007db3;">
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Course Name</th>
+                        <th scope="col">Course Code</th>
+                        <th scope="col">Price</th>
+                        <th scope="col" class="text-center">View Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let course of courseDetails; let i = index">
+                        <td>{{ i+1 }}</td>
+                        <th> <img [src]="course.course.image.url ? course?.course.image?.url : defaultThumbnailImg"
+                                alt="Course Thumbnail" class="course-thumbnail-img" decoding="async" loading="lazy"
+                                class="book-preview-img">
+                        </th>
+                        <td>{{ course.course.courseTitle }}</td>
+                        <td>{{ course.course.code }}</td>
+                        <td>{{ course.course.price | currency:'INR' }}</td>
+                        <td class="text-center">
+                            <a [routerLink]="['/purchased-courses', course?.course._id]" class="btn text-primary">View
+                                Details</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <mat-paginator [length]="totalCount" [pageSize]="10" (page)="handlePage($event)" aria-label="Select page">
+            </mat-paginator>
+        </div>
+    </div>
+</div>
