@@ -18,4 +18,16 @@ export class IssueService {
     return lastValueFrom(this.http.get(url));
   }
 
+  // get issuses by id
+  getIssueById(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/issue/${id}`;
+    return lastValueFrom(this.http.get(url));
+  }
+
+  // delete
+  deleteIssue(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/issue/${id}`;
+    return lastValueFrom(this.http.delete(url));
+  }
+
 }

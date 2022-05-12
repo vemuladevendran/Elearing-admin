@@ -1,1 +1,42 @@
-<p>issue works!</p>
+<div class="container">
+    <h2>Payment Issues</h2>
+    <!-- empty list -->
+    <div class="col-12 text-center" *ngIf="issueDetails.length === 0">
+        <img src="/assets/no-data-found.webp" class="w-75 h-75" alt="NO DATA FOUND">
+    </div>
+
+    <div class="row">
+        <div class="col-12 table-responsive shadow rounded border p-md-5 mt-3" *ngIf="issueDetails.length !== 0">
+            <table class="table">
+                <thead>
+                    <tr class="issue-tr">
+                        <th scope="col">#</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Course Title</th>
+                        <th scope="col">Course Code</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="issue-tr" *ngFor="let issue of issueDetails; let i = index">
+                        <th scope="row">{{i + 1}}</th>
+                        <td>{{issue.order.user.name}}</td>
+                        <td>{{issue.order.user.role}}</td>
+                        <td>{{issue.order.course.courseTitle}}</td>
+                        <td>{{issue.order.course.code}}</td>
+                        <td>{{issue.order.status}}</td>
+                        <td>
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"
+                                class="text-primary mx-2 cursor-pointer" [routerLink]="[issue._id]">visibility
+                            </mat-icon>
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
+                                class="text-danger cursor-pointer" (click)="deleteIssue(issue._id)">delete</mat-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
