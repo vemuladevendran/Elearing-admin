@@ -1,6 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,7 +11,10 @@ export class VideoCardComponent implements OnInit {
   defaultThumbnailImg = "/assets/video-default-thumbnail-img.webp";
   awsVideoUrl = environment.AWS_DOMAIN_URL;
   currentVideoDetails: any;
+  @Output() deleteVideoId = new EventEmitter<string>();
+
   constructor(
+
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +32,11 @@ export class VideoCardComponent implements OnInit {
 
   playSelectedVideo(video: any) {
     this.currentVideoDetails = video;
+  }
+
+  // Emit the video id to delete the video
+  deleteVideo(id: string) {
+    this.deleteVideoId.emit(id);
   }
 
 }

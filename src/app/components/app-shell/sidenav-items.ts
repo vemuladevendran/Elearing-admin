@@ -10,6 +10,7 @@ export const menuItems = [
     ['record_voice_over', 'Author', ['/authors']],
     ['pending_actions', 'Request Pending', ['/student-request']],
     ['pending', 'Course Request Pending', ['/course-request']],
+    ['bug_report', 'Payment Issues', ['/issue']],
     ['person', 'Admin', ['/admin']],
 
 ].map(([icon, text, path]) => ({ icon, text, path }));

@@ -1,7 +1,4 @@
 <div class="container py-1 h-100 mt-4" style="background-color: #f2fcfe;">
-    <div class="row h-100">
-        <!-- <app-card [videosList]="videosList"></app-card> -->
-    </div>
     <!-- new video section -->
     <div class="row">
         <div class="col-12 col-md-6 col-lg-7">
@@ -20,7 +17,9 @@
                                     (click)="playSelectedVideo(video)">
                                     play_circle</mat-icon>
                             </a>
-                            <mat-icon title="Delete" class="text-danger cursor-pointer me-3">delete </mat-icon>
+                            <mat-icon title="Delete" class="text-danger cursor-pointer me-3"
+                                (click)="deleteVideo(video._id)">
+                                delete </mat-icon>
                         </div>
                     </mat-card>
                 </div>

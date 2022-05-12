@@ -47,6 +47,7 @@ const routes: Routes = [
       { path: 'orders', loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersModule) },
       { path: 'category', loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryModule) },
       { path: 'purchased-courses', loadChildren: () => import('./pages/purchased-courses/purchased-courses.module').then(m => m.PurchasedCoursesModule) },
+      { path: 'issue', loadChildren: () => import('./pages/issue/issue.module').then(m => m.IssueModule) },
 
       {
         path: '**',

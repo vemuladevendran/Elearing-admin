@@ -31,4 +31,10 @@ export class VideoService {
     const url = `${this.settings.API_BASE_URL}/video`;
     return lastValueFrom(this.http.post(url, data));
   }
+
+  // delete video
+  deleteVideo(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/video/${id}`;
+    return lastValueFrom(this.http.delete(url));
+  }
 }
