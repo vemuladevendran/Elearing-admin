@@ -30,7 +30,7 @@ export class BookCardComponent implements OnInit {
 
   // Emit the book id to delete the book
   async viewBookDetails(data: any) {
-    await this.router.navigate([`/books/${data._id}`]);
+    this.router.navigate([`/books/${data._id}`]);
     this.getActiveBookDetails();
     this.viewBook.emit(data);
   }
